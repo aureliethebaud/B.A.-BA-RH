@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabaRh", "BabaRh\BabaRh.csproj", "{10FB39BF-B478-46FF-969C-509428C2C8AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabaRh.AccessLayer", "BabaRh.AccessLayer\BabaRh.AccessLayer.csproj", "{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10FB39BF-B478-46FF-969C-509428C2C8AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FB39BF-B478-46FF-969C-509428C2C8AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10FB39BF-B478-46FF-969C-509428C2C8AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10FB39BF-B478-46FF-969C-509428C2C8AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F54434A1-1074-4F7C-9930-F6C57839527B}
+	EndGlobalSection
+EndGlobal
