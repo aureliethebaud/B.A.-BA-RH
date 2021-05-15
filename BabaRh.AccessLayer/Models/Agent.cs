@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace BabaRh.AccessLayer.Models
         [Required, MaxLength(30)]
         public string Prenom { get; set; }
 
+        [NotMapped]
         [Required, MinLength(8), MaxLength(12)]
         public string Password { get; set; }
     }
