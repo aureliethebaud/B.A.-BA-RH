@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BabaRh.AccessLayer.EntityFramework.Interfaces
 {
-    public interface QuestionAccessLayer
+    public interface IQuestionAccessLayer
     {
         int Add(Question question);
 

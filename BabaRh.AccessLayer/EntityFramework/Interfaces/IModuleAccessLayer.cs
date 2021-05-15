@@ -9,11 +9,13 @@ namespace BabaRh.AccessLayer.EntityFramework.Interfaces
 {
     public interface IModuleAccessLayer
     {
-        string Add(Module module);
+        void Add(Module module);
 
         Module Update(Module module);
 
         void Delete(string moduleLib);
+
+        Module Get(string moduleLib);
 
         List<Module> GetAll();
 

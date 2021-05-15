@@ -15,6 +15,8 @@ namespace BabaRh.AccessLayer.EntityFramework.Interfaces
 
         void Delete(int quizzId);
 
+        Quizz Get(int quizzId);
+
         List<Quizz> GetAll();
 
     }

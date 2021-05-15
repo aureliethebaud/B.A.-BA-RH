@@ -52,13 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityFramework\AccessLayers\AgentAcessLayer.cs" />
+    <Compile Include="EntityFramework\AccessLayers\CandidatAccessLayer.cs" />
+    <Compile Include="EntityFramework\AccessLayers\ModuleAccessLayer.cs" />
+    <Compile Include="EntityFramework\AccessLayers\QuestionAccessLayer.cs" />
+    <Compile Include="EntityFramework\AccessLayers\QuizzAccessLayer.cs" />
+    <Compile Include="EntityFramework\AccessLayers\ReponseAccessLayer.cs" />
     <Compile Include="EntityFramework\BabaRhDbContext.cs" />
     <Compile Include="EntityFramework\Interfaces\IAgentAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\ICandidatAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IModuleAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IQuizzAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IReponseAccessLayer.cs" />
-    <Compile Include="EntityFramework\Interfaces\QuestionAccessLayer.cs" />
+    <Compile Include="EntityFramework\Interfaces\IQuestionAccessLayer.cs" />
     <Compile Include="Migrations\202105010920021_InitialCreate.cs" />
     <Compile Include="Migrations\202105010920021_InitialCreate.Designer.cs">
       <DependentUpon>202105010920021_InitialCreate.cs</DependentUpon>
@@ -79,9 +85,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EntityFramework\AccessLayers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105010920021_InitialCreate.resx">
       <DependentUpon>202105010920021_InitialCreate.cs</DependentUpon>
