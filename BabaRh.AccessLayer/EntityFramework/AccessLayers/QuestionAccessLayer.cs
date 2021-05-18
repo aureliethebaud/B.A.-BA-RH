@@ -2,6 +2,7 @@
 using BabaRh.AccessLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,10 +38,13 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// <returns>L'identifiant de la question ajoutée.</returns>
         public int Add(Question question)
         {
+
+
             this.context.Questions.Add(question);
-            this.context.SaveChanges();
+            context.SaveChanges();
 
             return question.QuestionId;
+            //champs ModuleLib requis !!
         }
 
 
