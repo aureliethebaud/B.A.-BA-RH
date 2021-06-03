@@ -16,11 +16,22 @@ namespace BabaRh.WcfService
         [OperationContract]
         int AddQuestion(AjoutQuestion question);
 
+        [OperationContract]
+        bool DeleteQuestion(int QuestionId);
+
+        [OperationContract]
+        QuestionOutput GetQuestion(int QuestionId);
+
+        [OperationContract]
+        List<QuestionOutput> GetQuestions();
+
+        [OperationContract]
+        QuestionOutput UpdateQuestion(UpdateQuestionInput question);
     }
 
        
     [DataContract]
-    public class AjoutQuestion
+    public class QuestionBase
     {
         [DataMember]
         public int QuestionId { get; set; }
@@ -29,5 +40,19 @@ namespace BabaRh.WcfService
         public string ModuleLib { get; set; }
         [DataMember]
         public string QuestionLib { get; set; }
+    }
+    [DataContract]
+    public class AjoutQuestion : QuestionBase
+    {
+    }
+
+    [DataContract]
+    public class QuestionOutput : QuestionBase
+    {
+    }
+
+    [DataContract]
+    public class UpdateQuestionInput : QuestionBase
+    {
     }
 }

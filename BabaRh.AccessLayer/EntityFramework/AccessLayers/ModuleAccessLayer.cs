@@ -38,8 +38,9 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         {
             this.context.Modules.Add(module);
             this.context.SaveChanges();
+           
         }
-
+      
 
         /// <summary>
         ///       Permet la mise à jour d'un module dans la base de données.
