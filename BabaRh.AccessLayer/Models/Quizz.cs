@@ -12,14 +12,19 @@ namespace BabaRh.AccessLayer.Models
     {
         public int QuizzId { get; set; }
 
-        [Required]
-        [Index(IsUnique = true)]
         public int CandidatId { get; set; }
-        [Required]
-        [Index(IsUnique = true)]
-        public int QuestionId { get; set; }
 
-        public ICollection<Candidat> Candidat { get; set; }
+        public DateTime Timer { get; set; }
+
+        public int NbQuestion { get; set; }
+
+        public string Url { get; set; }
+
+
+        public Candidat Candidat { get; set; }
+
+        public ICollection<Module> Module { get; set; }
+
         public ICollection<Question> Question { get; set; }
 
     }

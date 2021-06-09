@@ -55,9 +55,9 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
 
             if (agentToUpdate != null)
             {
-                agentToUpdate.Nom = agent.Nom;
-                agentToUpdate.Prenom = agent.Prenom;
-                agentToUpdate.Password = agent.Password;
+                agentToUpdate.Nom = agent.Nom != null ? agent.Nom : agentToUpdate.Nom;
+                agentToUpdate.Prenom = agent.Prenom != null ? agent.Prenom : agentToUpdate.Prenom;
+                agentToUpdate.Password = agent.Password != null ? agent.Password : agentToUpdate.Password;
             }
 
             this.context.SaveChanges();

@@ -17,6 +17,5 @@ namespace BabaRh.AccessLayer.Models
         [Required, MaxLength(30)]
         public string Prenom { get; set; }
 
-        public Quizz Quizz { get; set; }
     }
 }

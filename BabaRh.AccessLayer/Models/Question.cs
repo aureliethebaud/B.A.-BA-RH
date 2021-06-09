@@ -18,7 +18,13 @@ namespace BabaRh.AccessLayer.Models
         [Required]        
         public string ModuleLib { get; set; }
         
+        [Required]
         public Niveau Niveau { get; set; }
+
+        [Required]
+        public bool QuestionOuverte { get; set; }
+
+
         public Module Module { get; set; }
         public ICollection<Reponse> Reponse { get; set; }
         public ICollection<Quizz> Quizz { get; set; }

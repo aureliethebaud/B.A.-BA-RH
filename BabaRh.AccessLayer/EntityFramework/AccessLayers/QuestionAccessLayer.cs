@@ -60,7 +60,7 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
             if (questionToUpdate != null)
             {
                 questionToUpdate.QuestionLib = question.QuestionLib;
-                questionToUpdate.ModuleLib = question.ModuleLib;
+                questionToUpdate.Module = question.Module;
             }
 
             this.context.SaveChanges();

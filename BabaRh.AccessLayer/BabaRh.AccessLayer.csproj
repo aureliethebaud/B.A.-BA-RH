@@ -73,8 +73,43 @@
     <Compile Include="Migrations\202105180708142_WCF.Designer.cs">
       <DependentUpon>202105180708142_WCF.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106091028073_DataBaseReview.cs" />
+    <Compile Include="Migrations\202106091028073_DataBaseReview.Designer.cs">
+      <DependentUpon>202106091028073_DataBaseReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106091303134_DataBase_1.cs" />
+    <Compile Include="Migrations\202106091303134_DataBase_1.Designer.cs">
+      <DependentUpon>202106091303134_DataBase_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106091311023_DataBase_2.cs" />
+    <Compile Include="Migrations\202106091311023_DataBase_2.Designer.cs">
+      <DependentUpon>202106091311023_DataBase_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106091357475_DataBase_21.cs" />
+    <Compile Include="Migrations\202106091357475_DataBase_21.Designer.cs">
+      <DependentUpon>202106091357475_DataBase_21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106091402018_DataBase_22.cs" />
+    <Compile Include="Migrations\202106091402018_DataBase_22.Designer.cs">
+      <DependentUpon>202106091402018_DataBase_22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106091405488_DataBase_3.cs" />
+    <Compile Include="Migrations\202106091405488_DataBase_3.Designer.cs">
+      <DependentUpon>202106091405488_DataBase_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106091409512_DataBase_31.cs" />
+    <Compile Include="Migrations\202106091409512_DataBase_31.Designer.cs">
+      <DependentUpon>202106091409512_DataBase_31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106091416421_DataBase_32.cs" />
+    <Compile Include="Migrations\202106091416421_DataBase_32.Designer.cs">
+      <DependentUpon>202106091416421_DataBase_32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106091521409_DataBase_4.cs" />
+    <Compile Include="Migrations\202106091521409_DataBase_4.Designer.cs">
+      <DependentUpon>202106091521409_DataBase_4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Agent.cs" />
     <Compile Include="Models\Candidat.cs" />
     <Compile Include="Models\Module.cs" />
@@ -96,6 +131,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105180708142_WCF.resx">
       <DependentUpon>202105180708142_WCF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091028073_DataBaseReview.resx">
+      <DependentUpon>202106091028073_DataBaseReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091303134_DataBase_1.resx">
+      <DependentUpon>202106091303134_DataBase_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091311023_DataBase_2.resx">
+      <DependentUpon>202106091311023_DataBase_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091357475_DataBase_21.resx">
+      <DependentUpon>202106091357475_DataBase_21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091402018_DataBase_22.resx">
+      <DependentUpon>202106091402018_DataBase_22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091405488_DataBase_3.resx">
+      <DependentUpon>202106091405488_DataBase_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091409512_DataBase_31.resx">
+      <DependentUpon>202106091409512_DataBase_31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091416421_DataBase_32.resx">
+      <DependentUpon>202106091416421_DataBase_32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091521409_DataBase_4.resx">
+      <DependentUpon>202106091521409_DataBase_4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -14,6 +14,8 @@ namespace BabaRh.AccessLayer.Models
         [MaxLength(30)]
         public string ModuleLib { get; set; }
 
+
+        public ICollection<Quizz> Quizz { get; set; }
         public ICollection<Question> Question { get; set; }
 
     }

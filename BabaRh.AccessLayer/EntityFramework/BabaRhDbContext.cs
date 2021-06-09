@@ -22,7 +22,6 @@ namespace BabaRh.AccessLayer
         // sur la configuration et l'utilisation du modèle Code First, consultez http://go.microsoft.com/fwlink/?LinkId=390109.
 
         public virtual DbSet<Agent> Agents { get; set; }
-        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Candidat> Candidats { get; set; }
         public virtual DbSet<Quizz> Quizzs { get; set; }
         public virtual DbSet<Module> Modules { get; set; }

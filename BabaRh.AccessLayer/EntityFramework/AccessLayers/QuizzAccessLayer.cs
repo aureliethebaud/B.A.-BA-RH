@@ -56,7 +56,7 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
             if (quizzToUpdate != null)
             {
                 quizzToUpdate.CandidatId = quizz.CandidatId;
-                quizzToUpdate.QuestionId = quizz.QuestionId;
+                quizzToUpdate.Question = quizz.Question;
             }
 
             this.context.SaveChanges();
