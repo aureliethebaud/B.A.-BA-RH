@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace BabaRh.AccessLayer.Models
 {
-    public class Module
+    public class QuizzQuestion
     {
-        [Key]
-        [MaxLength(30)]
-        public string ModuleLib { get; set; }
+        [Key,Column(Order = 1)]
+        public int QuizzId { get; set; }
+        [Key, Column(Order = 2)]
+        public int QuestionId { get; set; }
 
-
-        public ICollection<QuizzModule> QuizzModule { get; set; }
-        public ICollection<Question> Question { get; set; }
-
+        public Quizz Quizz { get; set; }
+        public Question Question { get; set; }
     }
 }

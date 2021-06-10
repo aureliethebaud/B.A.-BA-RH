@@ -7,13 +7,13 @@ namespace BabaRh.AccessLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class DataBase_22 : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DataBase_22));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106091402018_DataBase_22"; }
+            get { return "202106101111399_Initial"; }
         }
         
         string IMigrationMetadata.Source

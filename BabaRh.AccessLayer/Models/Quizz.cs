@@ -23,9 +23,9 @@ namespace BabaRh.AccessLayer.Models
 
         public Candidat Candidat { get; set; }
 
-        public ICollection<Module> Module { get; set; }
+        public ICollection<QuizzModule> QuizzModule { get; set; }
 
-        public ICollection<Question> Question { get; set; }
+        public ICollection<QuizzQuestion> QuizzQuestion { get; set; }
 
     }
 }

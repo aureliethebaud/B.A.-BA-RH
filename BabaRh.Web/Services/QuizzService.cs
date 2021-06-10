@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BabaRh.Web.Services
 {
-    using BabaRh.AccessLayer.Models;
+    using BabaRh.Web.Models.ViewModel;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
@@ -25,14 +25,14 @@ namespace BabaRh.Web.Services
         }
 
 
-        public async Task<Quizz> Get(int id)
+        public async Task<QuizzVM> Get(int id)
         {
             var response = await this.httpClient.GetAsync($"/api/quizzes/{id}");
 
             if (response.IsSuccessStatusCode)
             {
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var quizz = JsonConvert.DeserializeObject<Quizz>(responseBody);
+                var quizz = JsonConvert.DeserializeObject<QuizzVM>(responseBody);
 
                 return quizz;
             }

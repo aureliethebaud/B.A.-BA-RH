@@ -27,6 +27,7 @@ namespace BabaRh.AccessLayer
         public virtual DbSet<Module> Modules { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Reponse> Reponses { get; set; }
+        public virtual DbSet<QuizzModule> QuizzModules { get; set; }
     }
 
     //public class MyEntity

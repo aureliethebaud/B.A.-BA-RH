@@ -3,7 +3,7 @@ namespace BabaRh.AccessLayer.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -14,8 +14,6 @@ namespace BabaRh.AccessLayer.Migrations
                         AgentId = c.Int(nullable: false, identity: true),
                         Nom = c.String(nullable: false, maxLength: 30),
                         Prenom = c.String(nullable: false, maxLength: 30),
-                        Password = c.String(nullable: false, maxLength: 12),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.AgentId);
             
@@ -26,23 +24,16 @@ namespace BabaRh.AccessLayer.Migrations
                         CandidatId = c.Int(nullable: false, identity: true),
                         Nom = c.String(nullable: false, maxLength: 30),
                         Prenom = c.String(nullable: false, maxLength: 30),
-                        Quizz_QuizzId = c.Int(),
                     })
-                .PrimaryKey(t => t.CandidatId)
-                .ForeignKey("dbo.Quizzs", t => t.Quizz_QuizzId)
-                .Index(t => t.Quizz_QuizzId);
+                .PrimaryKey(t => t.CandidatId);
             
             CreateTable(
-                "dbo.Quizzs",
+                "dbo.Modules",
                 c => new
                     {
-                        QuizzId = c.Int(nullable: false, identity: true),
-                        CandidatId = c.Int(nullable: false),
-                        QuestionId = c.Int(nullable: false),
+                        ModuleLib = c.String(nullable: false, maxLength: 30),
                     })
-                .PrimaryKey(t => t.QuizzId)
-                .Index(t => t.CandidatId, unique: true)
-                .Index(t => t.QuestionId, unique: true);
+                .PrimaryKey(t => t.ModuleLib);
             
             CreateTable(
                 "dbo.Questions",
@@ -52,18 +43,51 @@ namespace BabaRh.AccessLayer.Migrations
                         QuestionLib = c.String(nullable: false),
                         ModuleLib = c.String(nullable: false, maxLength: 30),
                         Niveau = c.Int(nullable: false),
+                        QuestionOuverte = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.QuestionId)
                 .ForeignKey("dbo.Modules", t => t.ModuleLib, cascadeDelete: true)
                 .Index(t => t.ModuleLib);
             
             CreateTable(
-                "dbo.Modules",
+                "dbo.QuizzQuestions",
                 c => new
                     {
+                        QuizzId = c.Int(nullable: false),
+                        QuestionId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.QuizzId, t.QuestionId })
+                .ForeignKey("dbo.Questions", t => t.QuestionId, cascadeDelete: true)
+                .ForeignKey("dbo.Quizzs", t => t.QuizzId, cascadeDelete: true)
+                .Index(t => t.QuizzId)
+                .Index(t => t.QuestionId);
+            
+            CreateTable(
+                "dbo.Quizzs",
+                c => new
+                    {
+                        QuizzId = c.Int(nullable: false, identity: true),
+                        CandidatId = c.Int(nullable: false),
+                        Timer = c.DateTime(nullable: false),
+                        NbQuestion = c.Int(nullable: false),
+                        Url = c.String(),
+                    })
+                .PrimaryKey(t => t.QuizzId)
+                .ForeignKey("dbo.Candidats", t => t.CandidatId, cascadeDelete: true)
+                .Index(t => t.CandidatId);
+            
+            CreateTable(
+                "dbo.QuizzModules",
+                c => new
+                    {
+                        QuizzId = c.Int(nullable: false),
                         ModuleLib = c.String(nullable: false, maxLength: 30),
                     })
-                .PrimaryKey(t => t.ModuleLib);
+                .PrimaryKey(t => new { t.QuizzId, t.ModuleLib })
+                .ForeignKey("dbo.Modules", t => t.ModuleLib, cascadeDelete: true)
+                .ForeignKey("dbo.Quizzs", t => t.QuizzId, cascadeDelete: true)
+                .Index(t => t.QuizzId)
+                .Index(t => t.ModuleLib);
             
             CreateTable(
                 "dbo.Reponses",
@@ -79,40 +103,30 @@ namespace BabaRh.AccessLayer.Migrations
                 .ForeignKey("dbo.Questions", t => t.Question_QuestionId)
                 .Index(t => t.Question_QuestionId);
             
-            CreateTable(
-                "dbo.QuestionQuizzs",
-                c => new
-                    {
-                        Question_QuestionId = c.Int(nullable: false),
-                        Quizz_QuizzId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Question_QuestionId, t.Quizz_QuizzId })
-                .ForeignKey("dbo.Questions", t => t.Question_QuestionId, cascadeDelete: true)
-                .ForeignKey("dbo.Quizzs", t => t.Quizz_QuizzId, cascadeDelete: true)
-                .Index(t => t.Question_QuestionId)
-                .Index(t => t.Quizz_QuizzId);
-            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.Reponses", "Question_QuestionId", "dbo.Questions");
-            DropForeignKey("dbo.QuestionQuizzs", "Quizz_QuizzId", "dbo.Quizzs");
-            DropForeignKey("dbo.QuestionQuizzs", "Question_QuestionId", "dbo.Questions");
+            DropForeignKey("dbo.QuizzQuestions", "QuizzId", "dbo.Quizzs");
+            DropForeignKey("dbo.QuizzModules", "QuizzId", "dbo.Quizzs");
+            DropForeignKey("dbo.QuizzModules", "ModuleLib", "dbo.Modules");
+            DropForeignKey("dbo.Quizzs", "CandidatId", "dbo.Candidats");
+            DropForeignKey("dbo.QuizzQuestions", "QuestionId", "dbo.Questions");
             DropForeignKey("dbo.Questions", "ModuleLib", "dbo.Modules");
-            DropForeignKey("dbo.Candidats", "Quizz_QuizzId", "dbo.Quizzs");
-            DropIndex("dbo.QuestionQuizzs", new[] { "Quizz_QuizzId" });
-            DropIndex("dbo.QuestionQuizzs", new[] { "Question_QuestionId" });
             DropIndex("dbo.Reponses", new[] { "Question_QuestionId" });
-            DropIndex("dbo.Questions", new[] { "ModuleLib" });
-            DropIndex("dbo.Quizzs", new[] { "QuestionId" });
+            DropIndex("dbo.QuizzModules", new[] { "ModuleLib" });
+            DropIndex("dbo.QuizzModules", new[] { "QuizzId" });
             DropIndex("dbo.Quizzs", new[] { "CandidatId" });
-            DropIndex("dbo.Candidats", new[] { "Quizz_QuizzId" });
-            DropTable("dbo.QuestionQuizzs");
+            DropIndex("dbo.QuizzQuestions", new[] { "QuestionId" });
+            DropIndex("dbo.QuizzQuestions", new[] { "QuizzId" });
+            DropIndex("dbo.Questions", new[] { "ModuleLib" });
             DropTable("dbo.Reponses");
-            DropTable("dbo.Modules");
-            DropTable("dbo.Questions");
+            DropTable("dbo.QuizzModules");
             DropTable("dbo.Quizzs");
+            DropTable("dbo.QuizzQuestions");
+            DropTable("dbo.Questions");
+            DropTable("dbo.Modules");
             DropTable("dbo.Candidats");
             DropTable("dbo.Agents");
         }

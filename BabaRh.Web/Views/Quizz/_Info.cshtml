@@ -15,12 +15,20 @@
         </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.Quizz.NbQuestion)
+            @Html.DisplayNameFor(model => model.NbQuestion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Quizz.NbQuestion)
+            @Html.DisplayFor(model => model.NbQuestion)
         </dd>
 
+        <dd>
+            <ul>
+                @foreach (var module in Model.Modules)
+                {
+                    <li>@module.ModuleLib</li>
+                }
+            </ul>
+        </dd>
     </dl>
 </div>

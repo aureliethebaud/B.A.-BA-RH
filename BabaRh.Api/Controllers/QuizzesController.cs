@@ -36,30 +36,6 @@ namespace BabaRh.Api.Controllers
 
 
 
-        //// GET api/pizzas/id
-        //[HttpGet]
-        //public IHttpActionResult Get(int id)
-        //{
-        //    var fromDb = pizzaAccessLayer.Get(id);
-
-        //    if (fromDb == null)
-        //        return this.NotFound();
-
-        //    var result = new Pizza
-        //    {
-        //        Id = fromDb.Id,
-        //        Name = fromDb.Name,
-        //        Dough = new Dough { Id = fromDb.Dough.Id, Description = fromDb.Dough.Description },
-        //        Ingredients = fromDb.IngredientPizzas.Select(ip => new Ingredient
-        //        {
-        //            Id = ip.Ingredient.Id,
-        //            Name = ip.Ingredient.Name
-        //        }).ToList()
-        //    };
-
-        //    return this.Ok(result);
-        //}
-
         //[HttpPost]
         //public async Task<IHttpActionResult> Create([FromBody] Pizza pizza)
         //{

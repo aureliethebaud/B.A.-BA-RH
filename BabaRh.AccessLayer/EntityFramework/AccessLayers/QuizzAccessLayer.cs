@@ -2,6 +2,7 @@
 using BabaRh.AccessLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,7 +57,7 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
             if (quizzToUpdate != null)
             {
                 quizzToUpdate.CandidatId = quizz.CandidatId;
-                quizzToUpdate.Question = quizz.Question;
+                //quizzToUpdate.Question = quizz.Question;
             }
 
             this.context.SaveChanges();
@@ -101,7 +102,10 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// <returns>La liste des quizzs retournée.</returns>
         public List<Quizz> GetAll()
         {
-            return this.context.Quizzs.ToList();
+            return this.context.Quizzs.AsQueryable().AsNoTracking()
+                .Include(q => q.Candidat)
+                .Include(q => q.QuizzModule.Select(mq => mq.Module))
+                .ToList();
         }
 
     }

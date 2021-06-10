@@ -63,51 +63,12 @@
     <Compile Include="EntityFramework\Interfaces\ICandidatAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IModuleAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IQuizzAccessLayer.cs" />
+    <Compile Include="EntityFramework\Interfaces\IQuizzModuleAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IReponseAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IQuestionAccessLayer.cs" />
-    <Compile Include="Migrations\202105010920021_InitialCreate.cs" />
-    <Compile Include="Migrations\202105010920021_InitialCreate.Designer.cs">
-      <DependentUpon>202105010920021_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105180708142_WCF.cs" />
-    <Compile Include="Migrations\202105180708142_WCF.Designer.cs">
-      <DependentUpon>202105180708142_WCF.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091028073_DataBaseReview.cs" />
-    <Compile Include="Migrations\202106091028073_DataBaseReview.Designer.cs">
-      <DependentUpon>202106091028073_DataBaseReview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091303134_DataBase_1.cs" />
-    <Compile Include="Migrations\202106091303134_DataBase_1.Designer.cs">
-      <DependentUpon>202106091303134_DataBase_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091311023_DataBase_2.cs" />
-    <Compile Include="Migrations\202106091311023_DataBase_2.Designer.cs">
-      <DependentUpon>202106091311023_DataBase_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091357475_DataBase_21.cs" />
-    <Compile Include="Migrations\202106091357475_DataBase_21.Designer.cs">
-      <DependentUpon>202106091357475_DataBase_21.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091402018_DataBase_22.cs" />
-    <Compile Include="Migrations\202106091402018_DataBase_22.Designer.cs">
-      <DependentUpon>202106091402018_DataBase_22.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091405488_DataBase_3.cs" />
-    <Compile Include="Migrations\202106091405488_DataBase_3.Designer.cs">
-      <DependentUpon>202106091405488_DataBase_3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091409512_DataBase_31.cs" />
-    <Compile Include="Migrations\202106091409512_DataBase_31.Designer.cs">
-      <DependentUpon>202106091409512_DataBase_31.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091416421_DataBase_32.cs" />
-    <Compile Include="Migrations\202106091416421_DataBase_32.Designer.cs">
-      <DependentUpon>202106091416421_DataBase_32.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091521409_DataBase_4.cs" />
-    <Compile Include="Migrations\202106091521409_DataBase_4.Designer.cs">
-      <DependentUpon>202106091521409_DataBase_4.cs</DependentUpon>
+    <Compile Include="Migrations\202106101111399_Initial.cs" />
+    <Compile Include="Migrations\202106101111399_Initial.Designer.cs">
+      <DependentUpon>202106101111399_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agent.cs" />
@@ -116,6 +77,8 @@
     <Compile Include="Models\Niveau.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Quizz.cs" />
+    <Compile Include="Models\QuizzModule.cs" />
+    <Compile Include="Models\QuizzQuestion.cs" />
     <Compile Include="Models\Reponse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,40 +87,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105010920021_InitialCreate.resx">
-      <DependentUpon>202105010920021_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105180708142_WCF.resx">
-      <DependentUpon>202105180708142_WCF.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091028073_DataBaseReview.resx">
-      <DependentUpon>202106091028073_DataBaseReview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091303134_DataBase_1.resx">
-      <DependentUpon>202106091303134_DataBase_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091311023_DataBase_2.resx">
-      <DependentUpon>202106091311023_DataBase_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091357475_DataBase_21.resx">
-      <DependentUpon>202106091357475_DataBase_21.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091402018_DataBase_22.resx">
-      <DependentUpon>202106091402018_DataBase_22.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091405488_DataBase_3.resx">
-      <DependentUpon>202106091405488_DataBase_3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091409512_DataBase_31.resx">
-      <DependentUpon>202106091409512_DataBase_31.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091416421_DataBase_32.resx">
-      <DependentUpon>202106091416421_DataBase_32.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091521409_DataBase_4.resx">
-      <DependentUpon>202106091521409_DataBase_4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106101111399_Initial.resx">
+      <DependentUpon>202106101111399_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

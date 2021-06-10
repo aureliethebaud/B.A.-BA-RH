@@ -13,6 +13,7 @@ namespace BabaRh.Web.Controllers
     public class QuizzController : Controller
     {
         private readonly QuizzService quizzService = new QuizzService();
+        private readonly ModuleService moduleService = new ModuleService();
 
         // GET: Quizzes/Details/id
         public async Task<ActionResult> Details(int? id)
@@ -24,16 +25,13 @@ namespace BabaRh.Web.Controllers
             var quizzGetted = await quizzService.Get((int)id);
             QuizzVM quizz = new QuizzVM()
             {
-                Quizz = new Quizz()
-                {
-                    Module = quizzGetted.Module,
-                    CandidatId = quizzGetted.CandidatId,
-                    NbQuestion = quizzGetted.NbQuestion,
-                    Question = quizzGetted.Question,
-                    QuizzId = quizzGetted.QuizzId,
-                    Timer = quizzGetted.Timer,
-                    Url = quizzGetted.Url
-                }
+                //ModuleLib = quizzGetted.Module,
+                CandidatId = quizzGetted.CandidatId,
+                NbQuestion = quizzGetted.NbQuestion,
+                //Question = quizzGetted.Question,
+                QuizzId = quizzGetted.QuizzId,
+                Timer = quizzGetted.Timer,
+                Url = quizzGetted.Url
             };
 
 
