@@ -4,16 +4,16 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 
-namespace BabaRh.Web.Models.ViewModel
+namespace BabaRh.Api.Models
 {
     [DataContract]
-    public class QuizzVM
+    public class Quizz
     {
         [DataMember]
         public int QuizzId { get; set; }
 
         [DataMember]
-        public CandidatVM Candidat { get; set; }
+        public Candidat Candidat { get; set; }
 
         [DataMember]
         public DateTime Timer { get; set; }
@@ -25,9 +25,9 @@ namespace BabaRh.Web.Models.ViewModel
         public string Url { get; set; }
 
         [DataMember]
-        public List<ModuleVM> Modules { get; set; }
+        public List<Module> Modules { get; set; }
 
         [DataMember]
-        public List<Question> Questions { get; set; }
+        public IEnumerable<Question> Questions { get; set; }
     }
 }

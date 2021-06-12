@@ -17,7 +17,7 @@ namespace BabaRh.AccessLayer.Models
         public bool IsOk { get; set; }
 
         [Required]
-        public string QuestionId { get; set; }
+        public int QuestionId { get; set; }
 
         public Question Question { get; set; }
 

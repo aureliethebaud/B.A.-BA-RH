@@ -22,18 +22,7 @@ namespace BabaRh.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var quizzGetted = await quizzService.Get((int)id);
-            QuizzVM quizz = new QuizzVM()
-            {
-                //ModuleLib = quizzGetted.Module,
-                CandidatId = quizzGetted.CandidatId,
-                NbQuestion = quizzGetted.NbQuestion,
-                //Question = quizzGetted.Question,
-                QuizzId = quizzGetted.QuizzId,
-                Timer = quizzGetted.Timer,
-                Url = quizzGetted.Url
-            };
-
+            var quizz = await quizzService.Get((int)id);
 
             if (quizz == null)
             {

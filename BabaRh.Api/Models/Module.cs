@@ -4,10 +4,10 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 
-namespace BabaRh.Web.Models.ViewModel
+namespace BabaRh.Api.Models
 {
     [DataContract]
-    public class ModuleVM
+    public class Module
     {
         [DataMember]
         public string ModuleLib { get; set; }

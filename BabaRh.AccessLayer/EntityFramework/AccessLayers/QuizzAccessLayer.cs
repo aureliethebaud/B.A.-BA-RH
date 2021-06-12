@@ -91,7 +91,14 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// <returns>Le quizz retourné.</returns>
         public Quizz Get(int quizzId)
         {
-            return this.context.Quizzs.SingleOrDefault(x => x.QuizzId == quizzId);
+            return this.context.Quizzs.AsQueryable().AsNoTracking()
+                .Include(q => q.QuizzQuestion)
+                .Include(q => q.QuizzQuestion.Select(qq => qq.Question))
+                .Include(q => q.QuizzQuestion.Select(qq => qq.Question).Select(qqr => qqr.Reponse))
+                .Include(q => q.Candidat)
+                .Include(q => q.QuizzModule)
+                .Include(q => q.QuizzModule.Select(mq => mq.Module))
+                .SingleOrDefault(x => x.QuizzId == quizzId);
         }
 
 

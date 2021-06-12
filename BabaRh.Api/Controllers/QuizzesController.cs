@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace BabaRh.Api.Controllers
 {
     using BabaRh.AccessLayer.EntityFramework.AccessLayers;
-    using BabaRh.AccessLayer.Models;
+    using BabaRh.Api.Models;
 
     public class QuizzesController : ApiController
     { 
@@ -29,8 +29,39 @@ namespace BabaRh.Api.Controllers
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
-            var result = quizzAccessLayer.Get(id);
+            var fromDb = quizzAccessLayer.Get(id);
 
+            var result = new Quizz
+            {
+                Questions = fromDb.QuizzQuestion.Select(qq => new Question
+                {
+                    Id = qq.Question.QuestionId,
+                    ModuleLib = qq.Question.ModuleLib,
+                    Niveau = (Niveau)qq.Question.Niveau,
+                    QuestionLib = qq.Question.QuestionLib,
+                    QuestionOuverte = qq.Question.QuestionOuverte,
+                    Reponses = qq.Question.Reponse.Select(r => new Reponse
+                    {
+                        Id = r.ReponseId,
+                        IsOK = r.IsOk,
+                        ReponseLib = r.ReponseLib
+                    }).ToList()
+                }).ToList(),
+                Candidat = new Candidat
+                {
+                    Id = fromDb.CandidatId,
+                    Prenom = fromDb.Candidat.Prenom,
+                    Nom = fromDb.Candidat.Nom
+                },
+                NbQuestion = fromDb.NbQuestion,
+                QuizzId = fromDb.QuizzId,
+                Timer = fromDb.Timer,
+                Url = fromDb.Url,
+                Modules = fromDb.QuizzModule.Select(qm => new Module
+                {
+                    ModuleLib = qm.ModuleLib
+                }).ToList()
+            };
             return this.Ok(result);
         }
 

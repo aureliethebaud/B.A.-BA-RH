@@ -96,25 +96,24 @@ namespace BabaRh.AccessLayer.Migrations
                         ReponseId = c.Int(nullable: false, identity: true),
                         ReponseLib = c.String(nullable: false),
                         IsOk = c.Boolean(nullable: false),
-                        QuestionId = c.String(nullable: false),
-                        Question_QuestionId = c.Int(),
+                        QuestionId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ReponseId)
-                .ForeignKey("dbo.Questions", t => t.Question_QuestionId)
-                .Index(t => t.Question_QuestionId);
+                .ForeignKey("dbo.Questions", t => t.QuestionId, cascadeDelete: true)
+                .Index(t => t.QuestionId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Reponses", "Question_QuestionId", "dbo.Questions");
+            DropForeignKey("dbo.Reponses", "QuestionId", "dbo.Questions");
             DropForeignKey("dbo.QuizzQuestions", "QuizzId", "dbo.Quizzs");
             DropForeignKey("dbo.QuizzModules", "QuizzId", "dbo.Quizzs");
             DropForeignKey("dbo.QuizzModules", "ModuleLib", "dbo.Modules");
             DropForeignKey("dbo.Quizzs", "CandidatId", "dbo.Candidats");
             DropForeignKey("dbo.QuizzQuestions", "QuestionId", "dbo.Questions");
             DropForeignKey("dbo.Questions", "ModuleLib", "dbo.Modules");
-            DropIndex("dbo.Reponses", new[] { "Question_QuestionId" });
+            DropIndex("dbo.Reponses", new[] { "QuestionId" });
             DropIndex("dbo.QuizzModules", new[] { "ModuleLib" });
             DropIndex("dbo.QuizzModules", new[] { "QuizzId" });
             DropIndex("dbo.Quizzs", new[] { "CandidatId" });

@@ -7,9 +7,15 @@ using System.Web;
 namespace BabaRh.Web.Models.ViewModel
 {
     [DataContract]
-    public class ModuleVM
+    public class CandidatVM
     {
         [DataMember]
-        public string ModuleLib { get; set; }
+        public int Id { get; set; }
+
+        [DataMember]
+        public string Nom { get; set; }
+
+        [DataMember]
+        public string Prenom { get; set; }
     }
 }

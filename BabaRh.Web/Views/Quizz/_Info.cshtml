@@ -3,32 +3,50 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Quizz</h4>
+    <h4>Quizz @Model.QuizzId</h4>
     <hr />
     <dl class="dl-horizontal">
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Quizz.Module.)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quizz.Module)
-        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.NbQuestion)
+            @Html.DisplayNameFor(model => model.Candidat) :
         </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Candidat.Nom)
+            @Html.DisplayFor(model => model.Candidat.Prenom)
+        </dd>
 
+        <dt>
+            Nombre de questions :
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.NbQuestion)
         </dd>
 
-        <dd>
-            <ul>
-                @foreach (var module in Model.Modules)
+        @foreach (var module in Model.Modules)
+        {
+            <dt>
+                @module.ModuleLib :
+            </dt>
+
+            <dd>
+                @foreach (var question in Model.Questions)
                 {
-                    <li>@module.ModuleLib</li>
+                    if (question.ModuleLib == module.ModuleLib)
+                    {
+                        @question.QuestionLib
+                        @question.Niveau
+                        <ul>
+                            @foreach (var reponse in question.Reponses)
+                            {
+                                <li>
+                                    @reponse.IsOK
+                                    @reponse.ReponseLib
+                                </li>
+                            }
+                        </ul>
+                    }
                 }
-            </ul>
-        </dd>
+            </dd>
+         }
     </dl>
 </div>
