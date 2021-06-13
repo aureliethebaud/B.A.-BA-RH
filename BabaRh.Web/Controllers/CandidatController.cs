@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+ 
 namespace BabaRh.Web.Controllers
 {
     public class CandidatController : Controller

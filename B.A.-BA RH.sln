@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabaRh", "BabaRh\BabaRh.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabaRh.AccessLayer", "BabaRh.AccessLayer\BabaRh.AccessLayer.csproj", "{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabaRh.WcfService", "BabaRh.WcfService\BabaRh.WcfService.csproj", "{516F28F2-C927-422E-B29A-717FF2A441DC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabaRh.Web", "BabaRh.Web\BabaRh.Web.csproj", "{5234AFE4-09EE-4935-9DA0-6191A90561EC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9} = {9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}
@@ -33,10 +31,6 @@ Global
 		{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{516F28F2-C927-422E-B29A-717FF2A441DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{516F28F2-C927-422E-B29A-717FF2A441DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{516F28F2-C927-422E-B29A-717FF2A441DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{516F28F2-C927-422E-B29A-717FF2A441DC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5234AFE4-09EE-4935-9DA0-6191A90561EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5234AFE4-09EE-4935-9DA0-6191A90561EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5234AFE4-09EE-4935-9DA0-6191A90561EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
