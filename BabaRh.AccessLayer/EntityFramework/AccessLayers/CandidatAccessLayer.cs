@@ -35,14 +35,14 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// </summary>
         /// <param name="candidat">Candidat à ajouter.</param>
         /// <returns>L'identifiant du candidat ajouté.</returns>
-        public async Task<int> AddAsync(Candidat candidat)
+        public int Add(Candidat candidat)
         {
             this.context.Candidats.Add(candidat);
-            await this.context.SaveChangesAsync().ConfigureAwait(false);
+            this.context.SaveChanges();
 
             return candidat.CandidatId;
         }
-        
+
 
         /// <summary>
         ///       Permet la mise à jour d'un candidat dans la base de données.

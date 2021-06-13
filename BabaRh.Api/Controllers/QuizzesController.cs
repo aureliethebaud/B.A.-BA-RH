@@ -13,6 +13,8 @@ namespace BabaRh.Api.Controllers
     public class QuizzesController : ApiController
     { 
         private readonly QuizzAccessLayer quizzAccessLayer = QuizzAccessLayer.Instance;
+        private readonly ModuleAccessLayer moduleAccessLayer = ModuleAccessLayer.Instance;
+        private readonly QuestionAccessLayer questionAccessLayer = QuestionAccessLayer.Instance;
 
         // GET api/quizzes
         [HttpGet]

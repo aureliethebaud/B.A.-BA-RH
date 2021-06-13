@@ -16,19 +16,12 @@ namespace BabaRh.Web.Services
 
     public class QuizzService
     {
-        private readonly HttpClient httpClient;
-
-        public QuizzService(HttpClient httpClient)
-        {
-            this.httpClient = httpClient;
-        }
+        private HttpClient httpClient;
 
         public QuizzService()
         {
-            this.httpClient = new HttpClient
-            {
-                BaseAddress = new Uri("https://localhost:44388")
-            };
+            this.httpClient = new HttpClient();
+            this.httpClient.BaseAddress = new Uri("https://localhost:44388");
         }
 
 
