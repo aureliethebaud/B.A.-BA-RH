@@ -9,7 +9,8 @@ namespace BabaRh.Web.Models.ViewModel
     [DataContract]
     public class CandidatVM
     {
-        [DataMember]
+        [DataMember(Name = "CandidatId")]
+
         public int Id { get; set; }
 
         [DataMember]

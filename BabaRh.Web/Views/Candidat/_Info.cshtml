@@ -1,0 +1,25 @@
+﻿@model List<BabaRh.Web.Models.ViewModel.CandidatVM>
+
+<h2>Details Candidat</h2>
+
+<div>
+    <table class="table table-striped">
+        @if (true)
+        {
+            <tr>
+                <th>@Html.DisplayNameFor(model => model[0].Id)</th>
+                <th>@Html.DisplayNameFor(model => model[0].Nom)</th>
+                <th>@Html.DisplayNameFor(model => model[0].Prenom)</th>
+            </tr>
+            foreach (var candidat in Model)
+            {
+                <tr>
+                    <td>@candidat.Id</td>
+                    <td>@candidat.Nom</td>
+                    <td>@candidat.Prenom</td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>

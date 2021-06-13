@@ -9,7 +9,7 @@ namespace BabaRh.AccessLayer.EntityFramework.Interfaces
 {
     public interface ICandidatAccessLayer
     {
-        int Add(Candidat candidat);
+        Task<int> AddAsync(Candidat candidat);
 
         Candidat Update(Candidat candidat);
 

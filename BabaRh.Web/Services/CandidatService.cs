@@ -13,17 +13,11 @@ namespace BabaRh.Web.Services
     using System.Text;
     using System.Threading.Tasks;
 
-
-    public class QuizzService
+    public class CandidatService
     {
         private readonly HttpClient httpClient;
 
-        public QuizzService(HttpClient httpClient)
-        {
-            this.httpClient = httpClient;
-        }
-
-        public QuizzService()
+        public CandidatService()
         {
             this.httpClient = new HttpClient
             {
@@ -31,20 +25,32 @@ namespace BabaRh.Web.Services
             };
         }
 
-
-        public async Task<QuizzVM> Get(int id)
+        public async Task<List<CandidatVM>> GetAll()
         {
-            var response = await this.httpClient.GetAsync($"/api/quizzes/{id}");
+            var response = await this.httpClient.GetAsync($"/api/candidats");
 
             if (response.IsSuccessStatusCode)
             {
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var quizz = JsonConvert.DeserializeObject<QuizzVM>(responseBody);
+                var candidats = JsonConvert.DeserializeObject<List<CandidatVM>>(responseBody);
 
-                return quizz;
+                return candidats;
             }
 
             return null;
+        }
+
+        public async Task<bool> Create(CandidatVM candidat)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(candidat), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PostAsync($"/api/candidats", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
