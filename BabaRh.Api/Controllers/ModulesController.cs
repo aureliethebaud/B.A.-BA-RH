@@ -1,9 +1,7 @@
-﻿using BabaRh.AccessLayer.EntityFramework.AccessLayers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿
+using BabaRh.AccessLayer.EntityFramework.AccessLayers;
+using BabaRh.Api.Models;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace BabaRh.Api.Controllers
@@ -30,5 +28,20 @@ namespace BabaRh.Api.Controllers
 
             return this.Ok(result);
         }
+
+        [HttpPost]
+        public IHttpActionResult Create([FromBody] Module module)
+        {
+            
+            var moduleToAdd = new AccessLayer.Models.Module
+            {
+                ModuleLib = module.ModuleLib
+            };
+
+            
+            moduleAccessLayer.Add(moduleToAdd);
+            return this.Ok("created");
+        }
+
     }
 }

@@ -13,7 +13,7 @@ namespace BabaRh.Web.Controllers
     public class QuizzController : Controller
     {
         private readonly QuizzService quizzService = new QuizzService();
-        private readonly ModuleService moduleService = new ModuleService();
+        private readonly ModulesService moduleService = new ModulesService();
 
         // GET: Quizzes/Details/id
         public async Task<ActionResult> Details(int? id)
