@@ -69,17 +69,21 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         ///       Permet la suppression d'un candidat de la base de données.
         /// </summary>
         /// <param name="candidatId">Identifiant du candidat à supprimer.</param>
-        public void Delete(int candidatId)
+        public async Task<bool> DeleteAsync(int candidatId)
         {
             var candidatToDelete = this.Get(candidatId);
             if (candidatToDelete != null)
             {
                 this.context.Candidats.Remove(candidatToDelete);
                 this.context.SaveChanges();
+
+                var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+                return result > 0;
             }
             else
             {
-                throw new Exception("Le candidat n'existe pas");
+                return false ;
             }
         }
 

@@ -83,5 +83,35 @@ namespace BabaRh.Web.Controllers
 
             return View(candidat);
         }
+
+        // GET: Candidats/Delete/id
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var candidat = await candidatService.Get((int)id);
+            if (candidat == null)
+            {
+                return HttpNotFound();
+            }
+            return View(candidat);
+        }
+
+        // POST: Candidats/Delete/id
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            await candidatService.Delete(id).ConfigureAwait(false);
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
     }
 }

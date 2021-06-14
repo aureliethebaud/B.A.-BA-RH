@@ -1,0 +1,36 @@
+﻿@model BabaRh.Web.Models.ViewModel.CandidatVM
+
+@{
+    ViewBag.Title = "Delete Candidat";
+}
+
+<h2>Delete</h2>
+
+<h3>Voulez-vous vraiment supprimer ce candidat ?</h3>
+
+<table class="table table-striped">
+    @if (true)
+    {
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.Nom)</th>
+            <th>@Html.DisplayNameFor(model => model.Prenom)</th>
+        </tr>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Nom</td>
+            <td>@Model.Prenom</td>
+        </tr>
+    }
+
+</table>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

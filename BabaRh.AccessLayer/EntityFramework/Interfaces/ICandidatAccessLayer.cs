@@ -13,7 +13,7 @@ namespace BabaRh.AccessLayer.EntityFramework.Interfaces
 
         Task<bool> UpdateAsync(Candidat candidat);
 
-        void Delete(int candidatId);
+        Task<bool> DeleteAsync(int candidatId);
 
         Candidat Get(int candidatId);
 
