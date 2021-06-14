@@ -38,13 +38,13 @@ namespace BabaRh.Api.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> Create([FromBody] Candidat candidat)
         {
-            var pizzaToAdd = new AccessLayer.Models.Candidat
+            var candidatToAdd = new AccessLayer.Models.Candidat
             {
                 Nom = candidat.Nom,
                 Prenom = candidat.Prenom,
             };
 
-            await candidatAccessLayer.AddAsync(pizzaToAdd);
+            await candidatAccessLayer.AddAsync(candidatToAdd);
             return this.Ok("created");
         }
 
