@@ -188,6 +188,7 @@
     <Content Include="Views\Modules\Index.cshtml" />
     <Content Include="Views\Modules\Delete.cshtml" />
     <Content Include="Views\Modules\Create.cshtml" />
+    <Content Include="Views\Candidat\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

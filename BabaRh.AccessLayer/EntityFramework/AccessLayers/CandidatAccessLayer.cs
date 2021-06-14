@@ -42,26 +42,26 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
 
             return candidat.CandidatId;
         }
-        
+
 
         /// <summary>
         ///       Permet la mise à jour d'un candidat dans la base de données.
         /// </summary>
         /// <param name="candidat">Candidat à mettre à jour.</param>
         /// <returns>Le candidat modifié.</returns>
-        public Candidat Update(Candidat candidat)
+        public async Task<bool> UpdateAsync(Candidat candidat)
         {
-            var candidatToUpdate = this.Get(candidat.CandidatId);
+            var candidatToEdit = this.context.Candidats.FirstOrDefault(c => c.CandidatId == candidat.CandidatId);
 
-            if (candidatToUpdate != null)
-            {
-                candidatToUpdate.Nom = candidat.Nom;
-                candidatToUpdate.Prenom = candidat.Prenom;
-            }
+            if (candidat == null)
+                return false;
 
-            this.context.SaveChanges();
+            candidatToEdit.Nom = candidat.Nom;
+            candidatToEdit.Prenom = candidat.Prenom;
 
-            return candidat;
+            var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+            return result > 0;
         }
 
 
@@ -103,6 +103,7 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         {
             return this.context.Candidats.ToList();
         }
+
     }
 
     

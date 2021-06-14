@@ -11,7 +11,7 @@ namespace BabaRh.AccessLayer.EntityFramework.Interfaces
     {
         Task<int> AddAsync(Candidat candidat);
 
-        Candidat Update(Candidat candidat);
+        Task<bool> UpdateAsync(Candidat candidat);
 
         void Delete(int candidatId);
 

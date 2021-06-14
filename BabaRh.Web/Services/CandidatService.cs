@@ -25,6 +25,21 @@ namespace BabaRh.Web.Services
             };
         }
 
+        public async Task<CandidatVM> Get(int id)
+        {
+            var response = await this.httpClient.GetAsync($"/api/candidats/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                var pizza = JsonConvert.DeserializeObject<CandidatVM>(responseBody);
+
+                return pizza;
+            }
+
+            return null;
+        }
+
         public async Task<List<CandidatVM>> GetAll()
         {
             var response = await this.httpClient.GetAsync($"/api/candidats");
@@ -52,5 +67,19 @@ namespace BabaRh.Web.Services
 
             return false;
         }
+
+        public async Task<bool> UpdateAsync(CandidatVM candidat)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(candidat), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PutAsync($"/api/candidats/{candidat.Id}", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }

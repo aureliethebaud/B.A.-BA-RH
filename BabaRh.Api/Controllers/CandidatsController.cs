@@ -14,6 +14,16 @@ namespace BabaRh.Api.Controllers
     {
         private readonly CandidatAccessLayer candidatAccessLayer = CandidatAccessLayer.Instance;
 
+        // GET api/candidats/id
+        [HttpGet]
+        public IHttpActionResult Get(int id)
+        {
+            var result = candidatAccessLayer.Get(id);
+
+            return this.Ok(result);
+        }
+
+
         // GET api/candidats
         [HttpGet]
         public IHttpActionResult GetAll()
@@ -36,6 +46,21 @@ namespace BabaRh.Api.Controllers
 
             await candidatAccessLayer.AddAsync(pizzaToAdd);
             return this.Ok("created");
+        }
+
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdateAsync([FromBody] Candidat candidat)
+        {
+            var candidatToUpdate = new AccessLayer.Models.Candidat
+            {
+                CandidatId = candidat.Id,
+                Nom = candidat.Nom,
+                Prenom = candidat.Prenom
+            };
+
+            await candidatAccessLayer.UpdateAsync(candidatToUpdate);
+
+            return this.Ok("updated");
         }
     }
 }

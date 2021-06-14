@@ -10,7 +10,6 @@ namespace BabaRh.Web.Models.ViewModel
     public class CandidatVM
     {
         [DataMember(Name = "CandidatId")]
-
         public int Id { get; set; }
 
         [DataMember]

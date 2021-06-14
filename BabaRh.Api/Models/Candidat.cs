@@ -9,7 +9,7 @@ namespace BabaRh.Api.Models
     [DataContract]
     public class Candidat
     {
-        [DataMember]
+        [DataMember(Name = "CandidatId")]
         public int Id { get; set; }
 
         [DataMember]
