@@ -188,12 +188,9 @@
     <Content Include="Views\Modules\Index.cshtml" />
     <Content Include="Views\Modules\Delete.cshtml" />
     <Content Include="Views\Modules\Create.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Candidat\Edit.cshtml" />
-=======
     <Content Include="Views\Modules\Edit.cshtml" />
     <Content Include="Views\Modules\Details.cshtml" />
->>>>>>> 1e7ac5bf12bcb4f7c79367ed512169a61593b3e0
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
