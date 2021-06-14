@@ -1,6 +1,5 @@
 ﻿namespace BabaRh.Web.Services
 {
-
     using BabaRh.Web.Models.ViewModel;
     using Newtonsoft.Json;
     using System;
@@ -9,12 +8,11 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class ReponsesService
+    public class QuestionsService
     {
-
         private readonly HttpClient httpClient;
 
-        public ReponsesService()
+        public QuestionsService()
         {
             this.httpClient = new HttpClient
             {
@@ -22,14 +20,14 @@
             };
         }
 
-        public async Task<ReponseVM> Get(int id)
+        public async Task<QuestionVM> Get(int id)
         {
-            var response = await this.httpClient.GetAsync($"/api/reponses/{id}");
+            var question = await this.httpClient.GetAsync($"/api/questions/{id}");
 
-            if (response.IsSuccessStatusCode)
+            if (question.IsSuccessStatusCode)
             {
-                string responseBody = await response.Content.ReadAsStringAsync();
-                var reponse = JsonConvert.DeserializeObject<ReponseVM>(responseBody);
+                string responseBody = await question.Content.ReadAsStringAsync();
+                var reponse = JsonConvert.DeserializeObject<QuestionVM>(responseBody);
 
                 return reponse;
             }
@@ -37,25 +35,25 @@
             return null;
         }
 
-        public async Task<List<ReponseVM>> GetAll()
+        public async Task<List<QuestionVM>> GetAll()
         {
-            var response = await this.httpClient.GetAsync($"/api/reponses");
+            var response = await this.httpClient.GetAsync($"/api/questions");
 
             if (response.IsSuccessStatusCode)
             {
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var reponses = JsonConvert.DeserializeObject<List<ReponseVM>>(responseBody);
+                var questions = JsonConvert.DeserializeObject<List<QuestionVM>>(responseBody);
 
-                return reponses;
+                return questions;
             }
 
             return null;
         }
 
-        public async Task<bool> Create(ReponseVM reponse)
+        public async Task<bool> Create(QuestionVM question)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(reponse), Encoding.UTF8, "application/json");
-            var response = await this.httpClient.PostAsync($"/api/reponses", content);
+            var content = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PostAsync($"/api/questions", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -65,10 +63,10 @@
             return false;
         }
 
-        public async Task<bool> UpdateAsync(ReponseVM reponse)
+        public async Task<bool> UpdateAsync(QuestionVM question)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(reponse), Encoding.UTF8, "application/json");
-            var response = await this.httpClient.PutAsync($"/api/reponses/{reponse.ReponseId}", content);
+            var content = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PutAsync($"/api/questions/{question.QuestionId}", content);
 
             if (response.IsSuccessStatusCode)
             {

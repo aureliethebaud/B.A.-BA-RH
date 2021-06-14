@@ -10,6 +10,7 @@ namespace BabaRh.Api.Controllers
     public class ReponsesController : ApiController
     {
         private readonly ReponseAccessLayer reponseAccessLayer = ReponseAccessLayer.Instance;
+        private readonly QuestionAccessLayer questionAccessLayer = QuestionAccessLayer.Instance;
 
         // GET api/reponses/id
         [HttpGet]
@@ -22,8 +23,8 @@ namespace BabaRh.Api.Controllers
 
             var result = new Reponse
             {
-                ReponseId = fromDb.ReponseId,
-                Question = new Question { Id = fromDb.QuestionId, QuestionLib = fromDb.Question.QuestionLib },
+                ReponseId = fromDb.ReponseId,                
+                //Question = new Question { QuestionId = fromDb.QuestionId, QuestionLib = fromDb.Question.QuestionLib },
                 ReponseLib = fromDb.ReponseLib,
                 IsOk = fromDb.IsOk
             };
@@ -41,8 +42,8 @@ namespace BabaRh.Api.Controllers
         {
             var result = reponseAccessLayer.GetAll().Select(r => new Reponse
             {
-                ReponseId = r.ReponseId,
-                Question = new Question { Id = r.Question.QuestionId, QuestionLib = r.Question.QuestionLib },
+                ReponseId = r.ReponseId,                
+                //Question = new Question { QuestionId = r.Question.QuestionId, QuestionLib = r.Question.QuestionLib },
                 ReponseLib = r.ReponseLib,
                 IsOk = r.IsOk
             });

@@ -10,7 +10,7 @@ namespace BabaRh.Api.Models
     public class Question
     {
         [DataMember]
-        public int Id { get; set; }
+        public int QuestionId { get; set; }
 
         [DataMember]
         public string QuestionLib { get; set; }

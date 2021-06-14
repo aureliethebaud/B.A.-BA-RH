@@ -6,29 +6,30 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
-    public class ReponsesController : Controller
+    public class QuestionsController : Controller
     {
-        private readonly ReponsesService reponsesService = new ReponsesService();
-       private readonly QuestionsService questionsService = new QuestionsService();
+        private readonly QuestionsService questionsService = new QuestionsService();
+        private readonly ModulesService modulesService = new ModulesService();
 
-        // GET: Reponses/Index
+
+        // GET: Questions/Index
         public async Task<ActionResult> Index()
         {
-            var reponses = await reponsesService.GetAll();
+            var questions = await questionsService.GetAll();
 
-            if (reponses == null)
+            if (questions == null)
             {
                 return HttpNotFound();
             }
-            return View(reponses);
+            return View(questions);
         }
 
-        // GET: Reponses/Create
+        // GET: Questions/Create
         public ActionResult Create()
         {
-           //var questions = new SelectList(await questionsService.GetAll(), "QuestionId", "QuestionLib");
-            var vm = new ReponseVM();
-
+            
+            var vm = new QuestionVM();
+            
             return View(vm);
         }
 
@@ -37,13 +38,13 @@
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(ReponseVM vm)
+        public async Task<ActionResult> Create(QuestionVM vm)
         {
             if (ModelState.IsValid)
             {
-                //vm.Reponse.Question = new Question { Id = vm.QuestionId };
-                vm.ReponseLib = vm.ReponseLib;
-                await reponsesService.Create(vm);
+                
+                vm.QuestionLib = vm.QuestionLib;
+                await questionsService.Create(vm);
                 return RedirectToAction("Index");
             }
 
@@ -58,13 +59,13 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var reponse = await reponsesService.Get((int)id);
-            if (reponse == null)
+            var question = await questionsService.Get((int)id);
+            if (question == null)
             {
                 return HttpNotFound();
             }
 
-            return View(reponse);
+            return View(question);
         }
 
         // POST: Reponses/Edit/id
@@ -72,18 +73,18 @@
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(ReponseVM reponse)
+        public async Task<ActionResult> Edit(QuestionVM question)
         {
             if (ModelState.IsValid)
             {
-                await reponsesService.UpdateAsync(reponse);
+                await questionsService.UpdateAsync(question);
                 return RedirectToAction("Index");
             }
 
-            return View(reponse);
+            return View(question);
         }
 
-        // GET: Reponses/Delete/id
+        // GET: Questions/Delete/id
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -91,20 +92,20 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var reponse = await reponsesService.Get((int)id);
-            if (reponse == null)
+            var question = await questionsService.Get((int)id);
+            if (question == null)
             {
                 return HttpNotFound();
             }
-            return View(reponse);
+            return View(question);
         }
 
-        // POST: Reponses/Delete/id
+        // POST: Questions/Delete/id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await reponsesService.Delete(id).ConfigureAwait(false);
+            await questionsService.Delete(id).ConfigureAwait(false);
             return RedirectToAction("Index");
         }
 

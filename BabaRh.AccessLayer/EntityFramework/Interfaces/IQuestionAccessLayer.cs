@@ -9,11 +9,11 @@ namespace BabaRh.AccessLayer.EntityFramework.Interfaces
 {
     public interface IQuestionAccessLayer
     {
-        int Add(Question question);
+        Task<int> AddAsync(Question question);
 
-        Question Update(Question question);
+        Task<bool> UpdateAsync(Question question);
 
-        void Delete(int questionId);
+        Task<bool> DeleteAsync(int questionId);
 
         Question Get(int questionId);
 

@@ -11,7 +11,7 @@ namespace BabaRh.Web.Models.ViewModel
     public class ReponseVM
     {
         [DataMember]
-        public int Id { get; set; }
+        public int ReponseId { get; set; }
 
         [DataMember]
         [Display(Name = "Libellé")]

@@ -37,15 +37,12 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// </summary>
         /// <param name="question">Question à ajouter.</param>
         /// <returns>L'identifiant de la question ajoutée.</returns>
-        public int Add(Question question)
+        public async Task<int> AddAsync(Question question)
         {
-
-
             this.context.Questions.Add(question);
-            context.SaveChanges();
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
 
             return question.QuestionId;
-            //champs ModuleLib requis !!
         }
 
 
@@ -54,37 +51,43 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// </summary>
         /// <param name="question">Question à mettre à jour.</param>
         /// <returns>La question modifiée.</returns>
-        public Question Update(Question question)
+        public async Task<bool> UpdateAsync(Question question)
         {
-            var questionToUpdate = this.Get(question.QuestionId);
+            var questionToUpdate = this.context.Questions.FirstOrDefault(q => q.QuestionId == question.QuestionId);
 
-            if (questionToUpdate != null)
-            {
-                questionToUpdate.QuestionLib = question.QuestionLib;
-                questionToUpdate.Module = question.Module;
-            }
+            if (questionToUpdate == null)
+                return false;
 
-            this.context.SaveChanges();
+            questionToUpdate.QuestionLib = question.QuestionLib;
+            questionToUpdate.ModuleLib = question.ModuleLib;
+            questionToUpdate.Niveau = question.Niveau;
+            questionToUpdate.QuestionOuverte = question.QuestionOuverte;
+            
 
-            return question;
+            var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+            return result > 0;
         }
-
 
         /// <summary>
         ///       Permet la suppression d'une question de la base de données.
         /// </summary>
         /// <param name="questionId">Identifiant de la question à supprimer.</param>
-        public void Delete(int questionId)
+        public async Task<bool> DeleteAsync(int questionId)
         {
             var questionToDelete = this.Get(questionId);
             if (questionToDelete != null)
             {
                 this.context.Questions.Remove(questionToDelete);
                 this.context.SaveChanges();
+
+                var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+                return result > 0;
             }
             else
             {
-                throw new Exception("La question n'existe pas");
+                return false;
             }
         }
 
@@ -95,7 +98,8 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// <returns>La question retournée.</returns>
         public Question Get(int questionId)
         {
-            return this.context.Questions.AsQueryable().SingleOrDefault(x => x.QuestionId == questionId);
+            return this.context.Questions.AsQueryable()
+                .Include(q => q.Reponse).FirstOrDefault(q => q.QuestionId == questionId);
         }
 
 
@@ -106,7 +110,9 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// <returns>La liste des questions retournée.</returns>
         public List<Question> GetAll()
         {
-            return this.context.Questions.AsQueryable().ToList();
+            return this.context.Questions.AsQueryable()
+                .Include(q => q.Reponse).ToList();
+
         }
 
     }

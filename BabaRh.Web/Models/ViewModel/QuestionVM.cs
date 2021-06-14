@@ -6,17 +6,19 @@ using System.Web;
 
 namespace BabaRh.Web.Models.ViewModel
 {
-    [DataContract]
-    public class Question
+    public class QuestionVM
     {
+
         [DataMember]
-        public int Id { get; set; }
+        public string QuestionId { get; set; }
 
         [DataMember]
         public string QuestionLib { get; set; }
 
         [DataMember]
         public string ModuleLib { get; set; }
+
+        public List<string> ModuleLibList { get; set; }
 
         [DataMember]
         public Niveau Niveau { get; set; }
@@ -26,6 +28,5 @@ namespace BabaRh.Web.Models.ViewModel
 
         [DataMember]
         public List<ReponseVM> Reponses { get; set; }
-
     }
 }

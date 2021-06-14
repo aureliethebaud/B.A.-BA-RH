@@ -16,7 +16,7 @@ namespace BabaRh.Api.Models
         public string ReponseLib { get; set; }
 
         [DataMember]
-        public bool IsOk { get; set; }
+        public bool IsOk { get; set; }        
 
         [DataMember]
         public Question Question { get; set; }

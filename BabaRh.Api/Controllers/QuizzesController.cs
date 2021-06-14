@@ -33,7 +33,7 @@ namespace BabaRh.Api.Controllers
             {
                 Questions = fromDb.QuizzQuestion.Select(qq => new Question
                 {
-                    Id = qq.Question.QuestionId,
+                    QuestionId = qq.Question.QuestionId,
                     ModuleLib = qq.Question.ModuleLib,
                     Niveau = (Niveau)qq.Question.Niveau,
                     QuestionLib = qq.Question.QuestionLib,
