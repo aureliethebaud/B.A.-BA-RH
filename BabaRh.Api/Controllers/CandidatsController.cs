@@ -62,5 +62,20 @@ namespace BabaRh.Api.Controllers
 
             return this.Ok("updated");
         }
+
+        [HttpDelete]
+        public async Task<IHttpActionResult> Delete(int id)
+        {
+            var candidatToDelete = candidatAccessLayer.Get(id);
+
+            if (candidatToDelete == null)
+            {
+                return this.NotFound();
+            }
+
+            await candidatAccessLayer.DeleteAsync(candidatToDelete.CandidatId);
+            return this.Ok("Delete");
+        }
+
     }
 }

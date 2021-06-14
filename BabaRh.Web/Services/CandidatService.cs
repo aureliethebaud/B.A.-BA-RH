@@ -32,9 +32,9 @@ namespace BabaRh.Web.Services
             if (response.IsSuccessStatusCode)
             {
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var pizza = JsonConvert.DeserializeObject<CandidatVM>(responseBody);
+                var candidat = JsonConvert.DeserializeObject<CandidatVM>(responseBody);
 
-                return pizza;
+                return candidat;
             }
 
             return null;
@@ -72,6 +72,18 @@ namespace BabaRh.Web.Services
         {
             var content = new StringContent(JsonConvert.SerializeObject(candidat), Encoding.UTF8, "application/json");
             var response = await this.httpClient.PutAsync($"/api/candidats/{candidat.Id}", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            var response = await this.httpClient.DeleteAsync($"/api/candidats/{id}");
 
             if (response.IsSuccessStatusCode)
             {
