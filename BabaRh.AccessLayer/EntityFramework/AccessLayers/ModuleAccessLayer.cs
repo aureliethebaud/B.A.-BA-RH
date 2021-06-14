@@ -34,30 +34,32 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         ///       Permet l'ajout d'un module dans la base de données.
         /// </summary>
         /// <param name="module">Module à ajouter.</param>
-        public void Add(Module module)
+        public async void AddAsync(Module module)
         {
             this.context.Modules.Add(module);
-            this.context.SaveChanges();
-           
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
+
         }
-      
+
 
         /// <summary>
         ///       Permet la mise à jour d'un module dans la base de données.
         /// </summary>
         /// <param name="module">Module à mettre à jour.</param>
         /// <returns>Le module modifié.</returns>
-        public Module Update(Module module)
+        public async Task<bool> UpdateAsync(Module module)
         {
-            var moduleToUpdate = this.Get(module.ModuleLib);
+            var moduleToUpdate = this.context.Modules.FirstOrDefault(m => m.ModuleLib == module.ModuleLib);
 
-            if (moduleToUpdate != null)
-            {
-                moduleToUpdate.ModuleLib = module.ModuleLib;
-            }
+            if (module == null)
+                return false;
 
-            this.context.SaveChanges();
-            return module;
+            moduleToUpdate.ModuleLib = module.ModuleLib;
+            
+
+            var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+            return result > 0;
         }
 
 

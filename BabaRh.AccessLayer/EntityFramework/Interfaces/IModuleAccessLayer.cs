@@ -9,9 +9,9 @@ namespace BabaRh.AccessLayer.EntityFramework.Interfaces
 {
     public interface IModuleAccessLayer
     {
-        void Add(Module module);
+        void AddAsync(Module module);
 
-        Module Update(Module module);
+        Task<bool> UpdateAsync(Module module);
 
         void Delete(string moduleLib);
 

@@ -1,6 +1,7 @@
 ﻿using BabaRh.Web.Models.ViewModel;
 using BabaRh.Web.Services;
 using Newtonsoft.Json;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,12 @@ namespace BabaRh.Web.Controllers
         
         {
            var listModules = await modulesService.GetAll();
-            
+
+            if (listModules == null)
+            {
+                return HttpNotFound();
+            }
+
             return View(listModules);
         }
         // GET: Modules/Details/1
@@ -62,20 +68,19 @@ namespace BabaRh.Web.Controllers
 
         // GET: Modules/Edit
         public async Task<ActionResult> Edit(string moduleLib)
-        {         
-           
+        {
+            if (moduleLib == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var module = await modulesService.Get(moduleLib);
             if (module == null)
             {
                 return HttpNotFound();
             }
-            var vm = new ModuleVM
-            {
-                
-                ModuleLib = module.ToString()
-            };
+           
 
-            return View(vm);
+            return View(module);
            
         }
 
@@ -84,16 +89,16 @@ namespace BabaRh.Web.Controllers
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(ModuleVM vm)
+        public async Task<ActionResult> Edit(ModuleVM module)
         {
             if (ModelState.IsValid)
             {
-                vm.ModuleLib = vm.ModuleLib;
-                await modulesService.Update(vm.ModuleLib, vm);
+               
+                await modulesService.UpdateAsync(module);
                 return RedirectToAction("Index");
             }
 
-            return View(vm);
+            return View(module);
         }
 
 

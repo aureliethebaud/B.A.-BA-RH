@@ -25,13 +25,8 @@ namespace BabaRh.Api.Controllers
         [HttpGet]
         public IHttpActionResult Get(string moduleLib)
         {
-            var fromDb = moduleAccessLayer.Get(moduleLib);
-            if (fromDb == null)
-                return this.NotFound();
-            var result = new Module
-            {
-                ModuleLib = fromDb.ModuleLib
-            };
+            var result = moduleAccessLayer.Get(moduleLib);
+           
             return this.Ok(result);
         }
                         
@@ -46,21 +41,21 @@ namespace BabaRh.Api.Controllers
             };
 
             
-            moduleAccessLayer.Add(moduleToAdd);
+            moduleAccessLayer.AddAsync(moduleToAdd);
             return this.Ok("created");
         }
 
 
     
         [HttpPut]
-        public IHttpActionResult Update(string moduleLib, [FromBody] Module module)
+        public async Task<IHttpActionResult> UpdateAsync([FromBody] Module module)
         {
             var moduleToUpdate = new AccessLayer.Models.Module
             {
                 ModuleLib = module.ModuleLib
             };
 
-            moduleAccessLayer.Update(moduleToUpdate);
+            await moduleAccessLayer.UpdateAsync(moduleToUpdate);
 
             return this.Ok("updated");
         }

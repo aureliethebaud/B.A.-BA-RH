@@ -1,21 +1,20 @@
 ﻿using BabaRh.Web.Models.ViewModel;
 using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-
 namespace BabaRh.Web.Services
 {
+    using BabaRh.Web.Models.ViewModel;
+    using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class ModulesService
     {
 
-        private HttpClient httpClient;
+        private readonly HttpClient httpClient;
 
         public ModulesService()
         {
@@ -24,7 +23,7 @@ namespace BabaRh.Web.Services
         }
 
 
-        public async Task<IList<ModuleVM>> GetAll()
+        public async Task<List<ModuleVM>> GetAll()
         {
             var response = await this.httpClient.GetAsync("/api/modules");
 
@@ -36,17 +35,18 @@ namespace BabaRh.Web.Services
                 return modules;
             }
 
-            return new List<ModuleVM>();
+
+            return null;
         }
 
-        public async Task<Module> Get(string moduleLib)
+        public async Task<ModuleVM> Get(string moduleLib)
         {
             var response = await this.httpClient.GetAsync($"/api/modules/{moduleLib}");
 
             if (response.IsSuccessStatusCode)
             {
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var module = JsonConvert.DeserializeObject<Module>(responseBody);
+                var module = JsonConvert.DeserializeObject<ModuleVM>(responseBody);
 
                 return module;
             }
@@ -69,10 +69,10 @@ namespace BabaRh.Web.Services
         }
 
 
-        public async Task<bool> Update(string moduleLib, ModuleVM moduleVM)
+        public async Task<bool> UpdateAsync(ModuleVM module)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(moduleVM), Encoding.UTF8, "application/json");
-            var response = await this.httpClient.PutAsync($"/api/modules/{moduleLib}", content);
+            var content = new StringContent(JsonConvert.SerializeObject(module), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PutAsync($"/api/modules/{module.ModuleLib}", content);
 
             if (response.IsSuccessStatusCode)
             {
