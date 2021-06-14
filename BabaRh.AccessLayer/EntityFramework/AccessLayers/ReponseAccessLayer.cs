@@ -2,6 +2,7 @@
 using BabaRh.AccessLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,10 +36,10 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// </summary>
         /// <param name="reponse">Réponse à ajouter.</param>
         /// <returns>L'identifiant de la réponse ajoutée.</returns>
-        public int Add(Reponse reponse)
+        public async Task<int> AddAsync(Reponse reponse)
         {
             this.context.Reponses.Add(reponse);
-            this.context.SaveChanges();
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
 
             return reponse.ReponseId;
         }
@@ -49,19 +50,19 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// </summary>
         /// <param name="reponse">Réponse à mettre à jour.</param>
         /// <returns>La réponse modifiée.</returns>
-        public Reponse Update(Reponse reponse)
+        public async Task<bool> UpdateAsync(Reponse reponse)
         {
-            var reponseToUpdate = this.Get(reponse.ReponseId);
+            var reponseToUpdate = this.context.Reponses.FirstOrDefault(r => r.ReponseId == reponse.ReponseId);
 
-            if (reponseToUpdate != null)
-            {
-                reponseToUpdate.ReponseLib = reponse.ReponseLib;
-                reponseToUpdate.IsOk = reponse.IsOk;
-            }
+            if (reponse == null)
+                return false;
 
-            this.context.SaveChanges();
+            reponseToUpdate.ReponseLib = reponse.ReponseLib;
+            reponseToUpdate.IsOk = reponse.IsOk;
 
-            return reponse;
+            var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+            return result > 0;
         }
 
 
@@ -69,17 +70,21 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         ///       Permet la suppression d'une réponse de la base de données.
         /// </summary>
         /// <param name="reponseId">Identifiant de la réponse à supprimer.</param>
-        public void Delete(int ReponseId)
+        public async Task<bool> DeleteAsync(int reponseId)
         {
-            var reponseToDelete = this.Get(ReponseId);
+            var reponseToDelete = this.Get(reponseId);
             if (reponseToDelete != null)
             {
                 this.context.Reponses.Remove(reponseToDelete);
                 this.context.SaveChanges();
+
+                var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+                return result > 0;
             }
             else
             {
-                throw new Exception("La réponse n'existe pas");
+                return false;
             }
         }
 
@@ -90,10 +95,10 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// <returns>La réponse retournée.</returns>
         public Reponse Get(int reponseId)
         {
-            return this.context.Reponses.SingleOrDefault(x => x.ReponseId == reponseId);
+            return this.context.Reponses.AsQueryable().SingleOrDefault(x => x.ReponseId == reponseId);
         }
 
-
+        
 
         /// <summary>
         ///       Permet de retourner toutes les réponses de la base de données.
@@ -101,7 +106,7 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// <returns>La liste des réponses retournée.</returns>
         public List<Reponse> GetAll()
         {
-            return this.context.Reponses.ToList();
+            return this.context.Reponses.AsQueryable().ToList();
         }
 
     }

@@ -9,11 +9,11 @@ namespace BabaRh.AccessLayer.EntityFramework.Interfaces
 {
     public interface IReponseAccessLayer
     {
-        int Add(Reponse reponse);
+        Task<int> AddAsync(Reponse reponse);
 
-        Reponse Update(Reponse reponse);
+        Task<bool> UpdateAsync(Reponse reponse);
 
-        void Delete(int reponseId);
+        Task<bool> DeleteAsync(int reponseId);
 
         Reponse Get(int reponseId);
 

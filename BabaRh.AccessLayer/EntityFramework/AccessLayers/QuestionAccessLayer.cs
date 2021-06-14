@@ -2,6 +2,7 @@
 using BabaRh.AccessLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
@@ -94,7 +95,7 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// <returns>La question retournée.</returns>
         public Question Get(int questionId)
         {
-            return this.context.Questions.SingleOrDefault(x => x.QuestionId == questionId);
+            return this.context.Questions.AsQueryable().SingleOrDefault(x => x.QuestionId == questionId);
         }
 
 
@@ -105,7 +106,7 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// <returns>La liste des questions retournée.</returns>
         public List<Question> GetAll()
         {
-            return this.context.Questions.ToList();
+            return this.context.Questions.AsQueryable().ToList();
         }
 
     }

@@ -130,6 +130,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
     <Compile Include="Controllers\QuizzController.cs" />
+    <Compile Include="Controllers\ReponsesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,6 +144,7 @@
     <Compile Include="Services\CandidatService.cs" />
     <Compile Include="Services\ModulesService.cs" />
     <Compile Include="Services\QuizzService.cs" />
+    <Compile Include="Services\ReponsesService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -192,6 +194,10 @@
     <Content Include="Views\Modules\Edit.cshtml" />
     <Content Include="Views\Modules\Details.cshtml" />
     <Content Include="Views\Candidat\Delete.cshtml" />
+    <Content Include="Views\Reponses\Index.cshtml" />
+    <Content Include="Views\Reponses\Create.cshtml" />
+    <Content Include="Views\Reponses\Delete.cshtml" />
+    <Content Include="Views\Reponses\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

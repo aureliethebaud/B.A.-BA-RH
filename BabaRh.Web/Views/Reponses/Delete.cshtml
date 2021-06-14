@@ -1,0 +1,40 @@
+﻿@model BabaRh.Web.Models.ViewModel.ReponseVM
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ReponseVM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReponseLib)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReponseLib)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOK)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

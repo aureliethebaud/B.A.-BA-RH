@@ -40,8 +40,8 @@ namespace BabaRh.Api.Controllers
                     QuestionOuverte = qq.Question.QuestionOuverte,
                     Reponses = qq.Question.Reponse.Select(r => new Reponse
                     {
-                        Id = r.ReponseId,
-                        IsOK = r.IsOk,
+                        ReponseId = r.ReponseId,
+                        IsOk = r.IsOk,
                         ReponseLib = r.ReponseLib
                     }).ToList()
                 }).ToList(),

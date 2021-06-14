@@ -10,13 +10,16 @@ namespace BabaRh.Api.Models
     public class Reponse
     {
         [DataMember]
-        public int Id { get; set; }
+        public int ReponseId { get; set; }
 
         [DataMember]
         public string ReponseLib { get; set; }
 
         [DataMember]
-        public bool IsOK { get; set; }
+        public bool IsOk { get; set; }
+
+        [DataMember]
+        public Question Question { get; set; }
 
     }
 }
