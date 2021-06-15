@@ -137,6 +137,7 @@
     <Compile Include="Models\ViewModel\CandidatVM.cs" />
     <Compile Include="Models\ViewModel\ModuleVM.cs" />
     <Compile Include="Models\ViewModel\Question.cs" />
+    <Compile Include="Models\ViewModel\QuizzCreateUpdateVM.cs" />
     <Compile Include="Models\ViewModel\QuizzVM.cs" />
     <Compile Include="Models\ViewModel\ReponseVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -192,6 +193,8 @@
     <Content Include="Views\Modules\Edit.cshtml" />
     <Content Include="Views\Modules\Details.cshtml" />
     <Content Include="Views\Candidat\Delete.cshtml" />
+    <Content Include="Views\Quizz\Index.cshtml" />
+    <Content Include="Views\Quizz\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

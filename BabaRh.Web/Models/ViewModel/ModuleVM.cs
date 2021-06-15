@@ -13,5 +13,7 @@ namespace BabaRh.Web.Models.ViewModel
         [DataMember]
         [Display (Name="Modules")]
         public string ModuleLib { get; set; }
+
+        public int FakeId { get; set; }
     }
 }
