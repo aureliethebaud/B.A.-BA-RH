@@ -1,13 +1,11 @@
-﻿using BabaRh.AccessLayer.EntityFramework.Interfaces;
-using BabaRh.AccessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
+﻿namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
 {
+    using BabaRh.AccessLayer.EntityFramework.Interfaces;
+    using BabaRh.AccessLayer.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class AgentAccessLayer : IAgentAccessLayer
     {
         private readonly BabaRhDbContext context;

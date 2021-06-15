@@ -1,13 +1,12 @@
-﻿using BabaRh.AccessLayer.EntityFramework.Interfaces;
-using BabaRh.AccessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
+﻿namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
 {
+    using BabaRh.AccessLayer.EntityFramework.Interfaces;
+    using BabaRh.AccessLayer.Models;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+
     public class ModuleAccessLayer : IModuleAccessLayer
     {
         private readonly BabaRhDbContext context;
@@ -34,11 +33,12 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         ///       Permet l'ajout d'un module dans la base de données.
         /// </summary>
         /// <param name="module">Module à ajouter.</param>
-        public async void AddAsync(Module module)
+        public async Task<int> AddAsync(Module module)
         {
             this.context.Modules.Add(module);
             await this.context.SaveChangesAsync().ConfigureAwait(false);
 
+            return module.ModuleId;
         }
 
 
@@ -49,13 +49,13 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// <returns>Le module modifié.</returns>
         public async Task<bool> UpdateAsync(Module module)
         {
-            var moduleToUpdate = this.context.Modules.FirstOrDefault(m => m.ModuleLib == module.ModuleLib);
+            var moduleToUpdate = this.context.Modules.FirstOrDefault(m => m.ModuleId == module.ModuleId);
 
             if (module == null)
                 return false;
 
             moduleToUpdate.ModuleLib = module.ModuleLib;
-            
+
 
             var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
 
@@ -67,17 +67,19 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         ///       Permet la suppression d'un module de la base de données.
         /// </summary>
         /// <param name="moduleLib">Identifiant du module à supprimer.</param>
-        public void Delete(string moduleLib)
+        public async Task<bool> DeleteAsync(int moduleId)
         {
-            var moduleToDelete = this.Get(moduleLib);
+            var moduleToDelete = this.Get(moduleId);
             if (moduleToDelete != null)
             {
                 this.context.Modules.Remove(moduleToDelete);
-                this.context.SaveChanges();
+                var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+                return result > 0;
             }
             else
             {
-                throw new Exception("Le module n'existe pas");
+                return false;
             }
         }
 
@@ -87,9 +89,9 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         /// </summary>
         /// <param name="moduleLib">Identifiant du module à retourner.</param>
         /// <returns>Le module retourné.</returns>
-        public Module Get(string moduleLib)
+        public Module Get(int moduleId)
         {
-            return this.context.Modules.SingleOrDefault(x => x.ModuleLib == moduleLib);
+            return this.context.Modules.SingleOrDefault(x => x.ModuleId == moduleId);
         }
 
 
@@ -101,7 +103,7 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         {
             return this.context.Modules.ToList();
         }
+
+    
     }
-
 }
-

@@ -51,11 +51,11 @@ namespace BabaRh.Web.Controllers
             var module = (await moduleService.GetAll());
             for (int i = 0; i < module.Count; i++)
             {
-                module[i].FakeId = i+1;
+                module[i].ModuleId = i+1;
             }
 
             var candidats = new SelectList(await candidatService.GetAll(), "Id", "Nom", "Prenom");
-            var modules = new SelectList(await moduleService.GetAll(), "FakeId", "ModuleLib");
+            var modules = new SelectList(await moduleService.GetAll(), "ModuleId", "ModuleLib");
 
             //var questions = new SelectList(await questionService.GetAll(), "Param1", "Param2", "...");
 
@@ -79,7 +79,7 @@ namespace BabaRh.Web.Controllers
             if (ModelState.IsValid)
             {
                 vm.Quizz.Candidat = new CandidatVM { Id = vm.SelectedCandidatId };
-                vm.Quizz.Modules = vm.SelectedModulesLibs.Select(l => new ModuleVM { FakeId = l }).ToList();
+                vm.Quizz.Modules = vm.SelectedModulesLibs.Select(l => new ModuleVM { ModuleId = l }).ToList();
                 //vm.Quizz.Questions = vm.SelectedQuestionsIds.Select(i => new Question { Id = i }).ToList();
 
                 await quizzService.Create(vm.Quizz);

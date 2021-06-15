@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Web;
 
 namespace BabaRh.Web.Models.ViewModel
 {
+    [DataContract]
     public class QuestionVM
     {
 
@@ -13,23 +16,20 @@ namespace BabaRh.Web.Models.ViewModel
         public string QuestionId { get; set; }
 
         [DataMember]
+        [Display(Name = "Intitulé")]
         public string QuestionLib { get; set; }
 
         [DataMember]
-        public string ModuleLib { get; set; }
-
-        public List<string> ModuleLibList { get; set; }
+        public ModuleVM Module { get; set; }        
 
         [DataMember]
-        public Niveau Niveau { get; set; }
+        public NiveauVM Niveau { get; set; }
 
         [DataMember]
+        [Display(Name = "Question ouverte ?")]
         public bool QuestionOuverte { get; set; }
 
         [DataMember]
-
-        public List<ReponseVM> ReponseLib { get; set; }
-
         public List<ReponseVM> Reponses { get; set; }
 
     }

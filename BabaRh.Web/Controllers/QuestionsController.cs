@@ -10,7 +10,7 @@
     {
         private readonly QuestionsService questionsService = new QuestionsService();
         private readonly ModulesService modulesService = new ModulesService();
-        private readonly ReponsesService reponsesService = new ReponsesService();
+        private readonly NiveauxService niveauxService = new NiveauxService();
 
         // GET: Questions/Index
         public async Task<ActionResult> Index()
@@ -25,10 +25,15 @@
         }
 
         // GET: Questions/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            
-            var vm = new QuestionVM();
+            var modules = new SelectList(await modulesService.GetAll(), "ModuleId", "ModuleLib");
+            var niveaux = new SelectList(await niveauxService.GetAll(), "NiveauId", "NiveauLib");
+            var vm = new QuestionCreateUpdateVM()
+            {
+                AvailableModules = modules,
+                AvailableNiveaux = niveaux
+            };
             
             return View(vm);
         }
@@ -38,13 +43,14 @@
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(QuestionVM vm)
+        public async Task<ActionResult> Create(QuestionCreateUpdateVM vm)
         {
             if (ModelState.IsValid)
             {
-                
-                vm.QuestionLib = vm.QuestionLib;
-                await questionsService.Create(vm);
+
+                vm.Question.Module = new ModuleVM { ModuleId = vm.SelectedModuleId };
+                vm.Question.Niveau = new NiveauVM { NiveauId = vm.SelectedNiveauId };
+                await questionsService.Create(vm.Question);
                 return RedirectToAction("Index");
             }
 

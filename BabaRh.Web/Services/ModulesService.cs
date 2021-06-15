@@ -1,7 +1,4 @@
-﻿using BabaRh.Web.Models.ViewModel;
-using Newtonsoft.Json;
-using System;
-namespace BabaRh.Web.Services
+﻿namespace BabaRh.Web.Services
 {
     using BabaRh.Web.Models.ViewModel;
     using Newtonsoft.Json;
@@ -39,9 +36,9 @@ namespace BabaRh.Web.Services
             return null;
         }
 
-        public async Task<ModuleVM> Get(string moduleLib)
+        public async Task<ModuleVM> Get(int moduleId)
         {
-            var response = await this.httpClient.GetAsync($"/api/modules/{moduleLib}");
+            var response = await this.httpClient.GetAsync($"/api/modules/{moduleId}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -72,7 +69,18 @@ namespace BabaRh.Web.Services
         public async Task<bool> UpdateAsync(ModuleVM module)
         {
             var content = new StringContent(JsonConvert.SerializeObject(module), Encoding.UTF8, "application/json");
-            var response = await this.httpClient.PutAsync($"/api/modules/{module.ModuleLib}", content);
+            var response = await this.httpClient.PutAsync($"/api/modules/{module.ModuleId}", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        public async Task<bool> Delete(int moduleId)
+        {
+            var response = await this.httpClient.DeleteAsync($"/api/candidats/{moduleId}");
 
             if (response.IsSuccessStatusCode)
             {

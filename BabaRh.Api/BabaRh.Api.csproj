@@ -134,6 +134,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CandidatsController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
+    <Compile Include="Controllers\NiveauxController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\QuizzesController.cs" />
     <Compile Include="Controllers\ReponsesController.cs" />
@@ -169,7 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BabaRh.AccessLayer\BabaRh.AccessLayer.csproj">
-      <Project>{9cc27ec2-70fa-49fc-a92d-f041a67cbef9}</Project>
+      <Project>{7fb8cde7-3728-4ed5-be00-59d6152d1936}</Project>
       <Name>BabaRh.AccessLayer</Name>
     </ProjectReference>
   </ItemGroup>

@@ -4,13 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Liste des modules</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ModuleId)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.ModuleLib)
         </th>
@@ -20,12 +23,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.ModuleId)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ModuleLib)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ModuleId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ModuleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ModuleId }) })
         </td>
     </tr>
 }

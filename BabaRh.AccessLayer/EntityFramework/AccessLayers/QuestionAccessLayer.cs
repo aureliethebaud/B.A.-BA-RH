@@ -1,17 +1,15 @@
-﻿using BabaRh.AccessLayer.EntityFramework.Interfaces;
-using BabaRh.AccessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Validation;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
+﻿namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
 {
+    using BabaRh.AccessLayer.EntityFramework.Interfaces;
+    using BabaRh.AccessLayer.Models;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class QuestionAccessLayer : IQuestionAccessLayer
     {
+
         private readonly BabaRhDbContext context;
 
         private static QuestionAccessLayer instance;
@@ -59,10 +57,10 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
                 return false;
 
             questionToUpdate.QuestionLib = question.QuestionLib;
-            questionToUpdate.ModuleLib = question.ModuleLib;
-            questionToUpdate.Niveau = question.Niveau;
+            questionToUpdate.ModuleId = question.ModuleId;
+            questionToUpdate.NiveauId = question.NiveauId;
             questionToUpdate.QuestionOuverte = question.QuestionOuverte;
-            
+
 
             var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
 
@@ -111,10 +109,11 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
         public List<Question> GetAll()
         {
             return this.context.Questions.AsQueryable()
-                .Include(q => q.Reponse).ToList();
+                .Include(q => q.Reponse)
+                .Include(q => q.Module)
+                .Include(q => q.Niveau)
+                .ToList();
 
         }
-
     }
 }
-

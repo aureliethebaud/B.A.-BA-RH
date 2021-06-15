@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9CC27EC2-70FA-49FC-A92D-F041A67CBEF9}</ProjectGuid>
+    <ProjectGuid>{7FB8CDE7-3728-4ED5-BE00-59D6152D1936}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>BabaRh.AccessLayer</RootNamespace>
     <AssemblyName>BabaRh.AccessLayer</AssemblyName>
@@ -52,23 +52,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityFramework\AccessLayers\AgentAcessLayer.cs" />
+    <Compile Include="BabaRhDbContext.cs" />
+    <Compile Include="EntityFramework\AccessLayers\AgentAccessLayer.cs" />
     <Compile Include="EntityFramework\AccessLayers\CandidatAccessLayer.cs" />
     <Compile Include="EntityFramework\AccessLayers\ModuleAccessLayer.cs" />
+    <Compile Include="EntityFramework\AccessLayers\NiveauAccessLayer.cs" />
     <Compile Include="EntityFramework\AccessLayers\QuestionAccessLayer.cs" />
     <Compile Include="EntityFramework\AccessLayers\QuizzAccessLayer.cs" />
     <Compile Include="EntityFramework\AccessLayers\ReponseAccessLayer.cs" />
-    <Compile Include="EntityFramework\BabaRhDbContext.cs" />
     <Compile Include="EntityFramework\Interfaces\IAgentAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\ICandidatAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IModuleAccessLayer.cs" />
-    <Compile Include="EntityFramework\Interfaces\IQuizzAccessLayer.cs" />
-    <Compile Include="EntityFramework\Interfaces\IQuizzModuleAccessLayer.cs" />
-    <Compile Include="EntityFramework\Interfaces\IReponseAccessLayer.cs" />
+    <Compile Include="EntityFramework\Interfaces\INiveauAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IQuestionAccessLayer.cs" />
-    <Compile Include="Migrations\202106121905291_Initial.cs" />
-    <Compile Include="Migrations\202106121905291_Initial.Designer.cs">
-      <DependentUpon>202106121905291_Initial.cs</DependentUpon>
+    <Compile Include="EntityFramework\Interfaces\IQuizzAccessLayer.cs" />
+    <Compile Include="EntityFramework\Interfaces\IReponseAccessLayer.cs" />
+    <Compile Include="Migrations\202106151651367_InitialMigration.cs" />
+    <Compile Include="Migrations\202106151651367_InitialMigration.Designer.cs">
+      <DependentUpon>202106151651367_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agent.cs" />
@@ -88,8 +89,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106121905291_Initial.resx">
-      <DependentUpon>202106121905291_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106151651367_InitialMigration.resx">
+      <DependentUpon>202106151651367_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

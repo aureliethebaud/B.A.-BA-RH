@@ -10,7 +10,6 @@ namespace BabaRh.AccessLayer.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "BabaRh.AccessLayer.BabaRhDbContext";
         }
 
         protected override void Seed(BabaRh.AccessLayer.BabaRhDbContext context)

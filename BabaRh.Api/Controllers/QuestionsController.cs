@@ -10,6 +10,7 @@
     {
         private readonly QuestionAccessLayer questionAccessLayer = QuestionAccessLayer.Instance;
         
+        
 
         // GET api/questions/id
         [HttpGet]
@@ -24,8 +25,8 @@
             {
                 QuestionId = fromDb.QuestionId,                
                 QuestionLib = fromDb.QuestionLib,
-                Niveau = Niveau.Confirmé,
-                ModuleLib = fromDb.ModuleLib,
+                Niveau = new Niveau { NiveauId = fromDb.Niveau.NiveauId, NiveauLib = fromDb.Niveau.NiveauLib },
+                Module = new Module { ModuleId = fromDb.Module.ModuleId, ModuleLib = fromDb.Module.ModuleLib },
                 QuestionOuverte = fromDb.QuestionOuverte,
                 
             };
@@ -44,9 +45,9 @@
             var result = questionAccessLayer.GetAll().Select(q => new Question
             {
                 QuestionId = q.QuestionId,
-                QuestionLib = q.QuestionLib,     
-                Niveau = Niveau.Confirmé,
-                ModuleLib = q.ModuleLib,
+                QuestionLib = q.QuestionLib,
+                Niveau = new Niveau { NiveauId = q.Niveau.NiveauId, NiveauLib = q.Niveau.NiveauLib },
+                Module = new Module { ModuleId = q.Module.ModuleId, ModuleLib = q.Module.ModuleLib },
                 QuestionOuverte = q.QuestionOuverte,
 
             }) ;
@@ -59,10 +60,13 @@
         [HttpPost]
         public async Task<IHttpActionResult> Create([FromBody] Question question)
         {
+          
+
             var questionToAdd = new AccessLayer.Models.Question
             {
                 QuestionLib = question.QuestionLib,                
-                ModuleLib = question.ModuleLib,
+                ModuleId = question.Module.ModuleId,
+                NiveauId = question.Niveau.NiveauId,
                 QuestionOuverte = question.QuestionOuverte,
                 
             };
@@ -77,8 +81,9 @@
             var questionToUpdate = new AccessLayer.Models.Question
             {
                 QuestionId = question.QuestionId,
-                QuestionLib = question.QuestionLib,                
-                ModuleLib = question.ModuleLib,
+                QuestionLib = question.QuestionLib,
+                ModuleId = question.Module.ModuleId,
+                NiveauId = question.Niveau.NiveauId,
                 QuestionOuverte = question.QuestionOuverte,
             };
 

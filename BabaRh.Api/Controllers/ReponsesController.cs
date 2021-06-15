@@ -10,7 +10,7 @@ namespace BabaRh.Api.Controllers
     public class ReponsesController : ApiController
     {
         private readonly ReponseAccessLayer reponseAccessLayer = ReponseAccessLayer.Instance;
-        private readonly QuestionAccessLayer questionAccessLayer = QuestionAccessLayer.Instance;
+        
 
         // GET api/reponses/id
         [HttpGet]

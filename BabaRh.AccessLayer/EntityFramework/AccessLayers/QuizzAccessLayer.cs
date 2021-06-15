@@ -1,14 +1,13 @@
-﻿using BabaRh.AccessLayer.EntityFramework.Interfaces;
-using BabaRh.AccessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
+﻿namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
 {
+    using BabaRh.AccessLayer.EntityFramework.Interfaces;
+    using BabaRh.AccessLayer.Models;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+
     public class QuizzAccessLayer : IQuizzAccessLayer
     {
         private readonly BabaRhDbContext context;
@@ -88,7 +87,7 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
                 quizzToUpdate.NbQuestion = quizz.NbQuestion;
                 quizzToUpdate.QuizzModule = quizz.QuizzModule;
                 quizzToUpdate.QuizzQuestion = quizz.QuizzQuestion;
-                quizzToUpdate.Timer = quizz.Timer;
+                quizzToUpdate.Chrono = quizz.Chrono;
                 quizzToUpdate.Url = quizz.Url;
             }
 

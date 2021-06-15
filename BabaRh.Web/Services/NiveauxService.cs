@@ -8,11 +8,11 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class QuestionsService
+    public class NiveauxService
     {
         private readonly HttpClient httpClient;
 
-        public QuestionsService()
+        public NiveauxService()
         {
             this.httpClient = new HttpClient
             {
@@ -20,40 +20,43 @@
             };
         }
 
-        public async Task<QuestionVM> Get(int id)
+
+        public async Task<List<NiveauVM>> GetAll()
         {
-            var response = await this.httpClient.GetAsync($"/api/questions/{id}");
+            var response = await this.httpClient.GetAsync("/api/niveaux");
 
             if (response.IsSuccessStatusCode)
             {
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var question = JsonConvert.DeserializeObject<QuestionVM>(responseBody);
+                var niveaux = JsonConvert.DeserializeObject<List<NiveauVM>>(responseBody);
 
-                return question;
+                return niveaux;
+            }
+
+
+            return null;
+        }
+
+        public async Task<NiveauVM> Get(int id)
+        {
+            var response = await this.httpClient.GetAsync($"/api/niveaux/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                var niveau = JsonConvert.DeserializeObject<NiveauVM>(responseBody);
+
+                return niveau;
             }
 
             return null;
         }
 
-        public async Task<List<QuestionVM>> GetAll()
+
+        public async Task<bool> Create(NiveauVM niveau)
         {
-            var response = await this.httpClient.GetAsync($"/api/questions");
-
-            if (response.IsSuccessStatusCode)
-            {
-                string responseBody = await response.Content.ReadAsStringAsync();
-                var questions = JsonConvert.DeserializeObject<List<QuestionVM>>(responseBody);
-
-                return questions;
-            }
-
-            return null;
-        }
-
-        public async Task<bool> Create(QuestionVM question)
-        {
-            var content = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
-            var response = await this.httpClient.PostAsync($"/api/questions", content);
+            var content = new StringContent(JsonConvert.SerializeObject(niveau), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PostAsync($"/api/niveaux", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -63,10 +66,11 @@
             return false;
         }
 
-        public async Task<bool> UpdateAsync(QuestionVM question)
+
+        public async Task<bool> UpdateAsync(NiveauVM niveau)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
-            var response = await this.httpClient.PutAsync($"/api/questions/{question.QuestionId}", content);
+            var content = new StringContent(JsonConvert.SerializeObject(niveau), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PutAsync($"/api/niveaux/{niveau.NiveauId}", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -75,10 +79,9 @@
 
             return false;
         }
-
         public async Task<bool> Delete(int id)
         {
-            var response = await this.httpClient.DeleteAsync($"/api/questions/{id}");
+            var response = await this.httpClient.DeleteAsync($"/api/niveaux/{id}");
 
             if (response.IsSuccessStatusCode)
             {

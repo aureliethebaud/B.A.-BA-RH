@@ -16,7 +16,7 @@ namespace BabaRh.Api.Models
         public Candidat Candidat { get; set; }
 
         [DataMember]
-        public DateTime Timer { get; set; }
+        public int Chrono { get; set; }
 
         [DataMember]
         public int NbQuestion { get; set; }

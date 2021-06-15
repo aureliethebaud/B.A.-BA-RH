@@ -16,7 +16,7 @@ namespace BabaRh.Api.Models
         public string QuestionLib { get; set; }
 
         [DataMember]
-        public string ModuleLib { get; set; }
+        public Module Module { get; set; }
 
         [DataMember]
         public Niveau Niveau { get; set; }

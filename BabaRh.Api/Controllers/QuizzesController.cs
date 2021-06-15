@@ -54,8 +54,8 @@ namespace BabaRh.Api.Controllers
                 Questions = fromDb.QuizzQuestion.Select(qq => new Question
                 {
                     QuestionId = qq.Question.QuestionId,
-                    ModuleLib = qq.Question.ModuleLib,
-                    Niveau = (Niveau)qq.Question.Niveau,
+                    //ModuleId = qq.Question.Module.ModuleId,
+                    //Niveau = qq.Question.NiveauId,
                     QuestionLib = qq.Question.QuestionLib,
                     QuestionOuverte = qq.Question.QuestionOuverte,
                     Reponses = qq.Question.Reponse.Select(r => new Reponse
@@ -73,7 +73,7 @@ namespace BabaRh.Api.Controllers
                 },
                 NbQuestion = fromDb.NbQuestion,
                 QuizzId = fromDb.QuizzId,
-                Timer = fromDb.Timer,
+                Chrono = fromDb.Chrono,
                 Url = fromDb.Url,
                 Modules = fromDb.QuizzModule.Select(qm => new Module
                 {
@@ -90,7 +90,7 @@ namespace BabaRh.Api.Controllers
             {
                 CandidatId = quizz.Candidat.Id,
                 NbQuestion = quizz.NbQuestion,
-                Timer = quizz.Timer,
+                Chrono = quizz.Chrono,
                 Url = quizz.Url,
             };
 
@@ -113,7 +113,7 @@ namespace BabaRh.Api.Controllers
                     Prenom = quizz.Candidat.Prenom
                 },
                 NbQuestion = quizz.NbQuestion,
-                Timer = quizz.Timer,
+                Chrono = quizz.Chrono,
                 Url = quizz.Url,
             };
 

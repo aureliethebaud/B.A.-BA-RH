@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BabaRh.AccessLayer.Models
+﻿namespace BabaRh.AccessLayer.Models
 {
+    using System.Collections.Generic;
+    
+
     public class Quizz
     {
         public int QuizzId { get; set; }
 
-        public DateTime Timer { get; set; }
+        public int Chrono { get; set; }
 
         public int NbQuestion { get; set; }
 

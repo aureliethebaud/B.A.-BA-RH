@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using System.Web;
 
-namespace BabaRh.Api.Models
+
+namespace BabaRh.Web.Models.ViewModel
 {
     [DataContract]
-    public class Niveau
+    public class NiveauVM
     {
         [DataMember]
         public int NiveauId { get; set; }
 
         [DataMember]
+        [Display(Name = "Niveau")]
         public string NiveauLib { get; set; }
+
     }
 }

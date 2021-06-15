@@ -1,21 +1,18 @@
-﻿using BabaRh.AccessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BabaRh.AccessLayer.EntityFramework.Interfaces
+﻿namespace BabaRh.AccessLayer.EntityFramework.Interfaces
 {
+    using BabaRh.AccessLayer.Models;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     public interface IModuleAccessLayer
     {
-        void AddAsync(Module module);
+        Task<int> AddAsync(Module module);
 
         Task<bool> UpdateAsync(Module module);
 
-        void Delete(string moduleLib);
+        Task<bool> DeleteAsync(int moduleId);
 
-        Module Get(string moduleLib);
+        Module Get(int moduleId);
 
         List<Module> GetAll();
 

@@ -1,10 +1,8 @@
-﻿using BabaRh.AccessLayer.Models;
-using System;
-using System.Data.Entity;
-using System.Linq;
-
-namespace BabaRh.AccessLayer
+﻿namespace BabaRh.AccessLayer
 {
+    using BabaRh.AccessLayer.Models;
+    using System.Data.Entity;
+
     public class BabaRhDbContext : DbContext
     {
         // Votre contexte a été configuré pour utiliser une chaîne de connexion « BabaRhDbContext » du fichier 
@@ -28,6 +26,7 @@ namespace BabaRh.AccessLayer
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Reponse> Reponses { get; set; }
         public virtual DbSet<QuizzModule> QuizzModules { get; set; }
+        public virtual DbSet<Niveau> Niveaux { get; set; }
     }
 
     //public class MyEntity

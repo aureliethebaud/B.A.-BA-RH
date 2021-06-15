@@ -21,18 +21,18 @@ namespace BabaRh.Api.Controllers
         }
 
 
-        // GET api/modules/moduleLib
+        // GET api/modules/id
         [HttpGet]
-        public IHttpActionResult Get(string moduleLib)
+        public IHttpActionResult Get(int id)
         {
-            var result = moduleAccessLayer.Get(moduleLib);
+            var result = moduleAccessLayer.Get(id);
            
             return this.Ok(result);
         }
                         
 
         [HttpPost]
-        public IHttpActionResult Create([FromBody] Module module)
+        public async Task<IHttpActionResult> Create([FromBody] Module module)
         {
             
             var moduleToAdd = new AccessLayer.Models.Module
@@ -41,7 +41,7 @@ namespace BabaRh.Api.Controllers
             };
 
             
-            moduleAccessLayer.AddAsync(moduleToAdd);
+            await moduleAccessLayer.AddAsync(moduleToAdd);
             return this.Ok("created");
         }
 
@@ -52,12 +52,27 @@ namespace BabaRh.Api.Controllers
         {
             var moduleToUpdate = new AccessLayer.Models.Module
             {
+                ModuleId = module.ModuleId,
                 ModuleLib = module.ModuleLib
             };
 
             await moduleAccessLayer.UpdateAsync(moduleToUpdate);
 
             return this.Ok("updated");
+        }
+
+        [HttpDelete]
+        public async Task<IHttpActionResult> Delete(int id)
+        {
+            var moduleToDelete = moduleAccessLayer.Get(id);
+
+            if (moduleToDelete == null)
+            {
+                return this.NotFound();
+            }
+
+            await moduleAccessLayer.DeleteAsync(moduleToDelete.ModuleId);
+            return this.Ok("Delete");
         }
 
     }

@@ -1,14 +1,12 @@
-﻿using BabaRh.AccessLayer.EntityFramework.Interfaces;
-using BabaRh.AccessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
+﻿namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
 {
+    using BabaRh.AccessLayer.EntityFramework.Interfaces;
+    using BabaRh.AccessLayer.Models;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class ReponseAccessLayer : IReponseAccessLayer
     {
         private readonly BabaRhDbContext context;
@@ -98,7 +96,7 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
             return this.context.Reponses.AsQueryable().SingleOrDefault(x => x.ReponseId == reponseId);
         }
 
-        
+
 
         /// <summary>
         ///       Permet de retourner toutes les réponses de la base de données.
@@ -111,4 +109,3 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
 
     }
 }
-

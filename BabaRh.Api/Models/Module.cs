@@ -10,6 +10,9 @@ namespace BabaRh.Api.Models
     public class Module
     {
         [DataMember]
+        public int ModuleId { get; set; }
+
+        [DataMember]
         public string ModuleLib { get; set; }
     }
 }

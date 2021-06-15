@@ -16,7 +16,7 @@ namespace BabaRh.Web.Models.ViewModel
         public CandidatVM Candidat { get; set; }
 
         [DataMember]
-        public DateTime Timer { get; set; }
+        public int Chrono { get; set; }
 
         [DataMember]
         public int NbQuestion { get; set; }
@@ -28,6 +28,6 @@ namespace BabaRh.Web.Models.ViewModel
         public List<ModuleVM> Modules { get; set; }
 
         [DataMember]
-        public List<Question> Questions { get; set; }
+        public List<QuestionVM> Questions { get; set; }
     }
 }
