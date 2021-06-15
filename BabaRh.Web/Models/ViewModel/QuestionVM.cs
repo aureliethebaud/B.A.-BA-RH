@@ -27,6 +27,10 @@ namespace BabaRh.Web.Models.ViewModel
         public bool QuestionOuverte { get; set; }
 
         [DataMember]
+
         public List<ReponseVM> ReponseLib { get; set; }
+
+        public List<ReponseVM> Reponses { get; set; }
+
     }
 }

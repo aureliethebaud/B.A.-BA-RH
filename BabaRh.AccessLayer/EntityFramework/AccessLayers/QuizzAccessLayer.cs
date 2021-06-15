@@ -30,60 +30,6 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
             this.context = new BabaRhDbContext();
         }
 
-
-        /// <summary>
-        ///       Permet l'ajout d'un quizz dans la base de données.
-        /// </summary>
-        /// <param name="quizz">Quizz à ajouter.</param>
-        /// <returns>L'identifiant du quizz ajouté.</returns>
-        public int Add(Quizz quizz)
-        {
-            this.context.Quizzs.Add(quizz);
-            this.context.SaveChanges();
-
-            return quizz.QuizzId;
-        }
-
-
-        /// <summary>
-        ///       Permet la mise à jour d'un quizz dans la base de données.
-        /// </summary>
-        /// <param name="quizz">Quizz à mettre à jour.</param>
-        /// <returns>Le quizz modifié.</returns>
-        public Quizz Update(Quizz quizz)
-        {
-            var quizzToUpdate = this.Get(quizz.QuizzId);
-
-            if (quizzToUpdate != null)
-            {
-                quizzToUpdate.CandidatId = quizz.CandidatId;
-                //quizzToUpdate.Question = quizz.Question;
-            }
-
-            this.context.SaveChanges();
-
-            return quizz;
-        }
-
-
-        /// <summary>
-        ///       Permet la suppression d'un quizz de la base de données.
-        /// </summary>
-        /// <param name="quizzId">Identifiant du quizz à supprimer.</param>
-        public void Delete(int quizzId)
-        {
-            var quizzToDelete = this.Get(quizzId);
-            if (quizzToDelete != null)
-            {
-                this.context.Quizzs.Remove(quizzToDelete);
-                this.context.SaveChanges();
-            }
-            else
-            {
-                throw new Exception("Le quizz n'existe pas");
-            }
-        }
-
         /// <summary>
         ///       Permet de retourner un quizz de la base de données.
         /// </summary>
@@ -101,8 +47,6 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
                 .SingleOrDefault(x => x.QuizzId == quizzId);
         }
 
-
-
         /// <summary>
         ///       Permet de retourner tous les quizzs de la base de données.
         /// </summary>
@@ -115,5 +59,62 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
                 .ToList();
         }
 
+        /// <summary>
+        ///       Permet l'ajout d'un quizz dans la base de données.
+        /// </summary>
+        /// <param name="quizz">Quizz à ajouter.</param>
+        /// <returns>L'identifiant du quizz ajouté.</returns>
+        public async Task<int> AddAsync(Quizz quizz)
+        {
+            this.context.Quizzs.Add(quizz);
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+            return quizz.QuizzId;
+        }
+
+        /// <summary>
+        ///       Permet la mise à jour d'un quizz dans la base de données.
+        /// </summary>
+        /// <param name="quizz">Quizz à mettre à jour.</param>
+        /// <returns>Le quizz modifié.</returns>
+        public async Task<Quizz> UpdateAsync(Quizz quizz)
+        {
+            var quizzToUpdate = this.Get(quizz.QuizzId);
+
+            if (quizzToUpdate != null)
+            {
+                quizzToUpdate.CandidatId = quizz.CandidatId;
+                quizzToUpdate.Candidat = quizz.Candidat;
+                quizzToUpdate.NbQuestion = quizz.NbQuestion;
+                quizzToUpdate.QuizzModule = quizz.QuizzModule;
+                quizzToUpdate.QuizzQuestion = quizz.QuizzQuestion;
+                quizzToUpdate.Timer = quizz.Timer;
+                quizzToUpdate.Url = quizz.Url;
+            }
+
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+            return quizz;
+        }
+
+        /// <summary>
+        ///       Permet la suppression d'un quizz de la base de données.
+        /// </summary>
+        /// <param name="quizzId">Identifiant du quizz à supprimer.</param>
+        public async Task<bool> DeleteAsync(int quizzId)
+        {
+            var quizzToDelete = this.Get(quizzId);
+            if (quizzToDelete != null)
+            {
+                this.context.Quizzs.Remove(quizzToDelete);
+                var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+                return result > 0;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -75,7 +75,6 @@ namespace BabaRh.AccessLayer.EntityFramework.AccessLayers
             if (candidatToDelete != null)
             {
                 this.context.Candidats.Remove(candidatToDelete);
-                this.context.SaveChanges();
 
                 var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
 

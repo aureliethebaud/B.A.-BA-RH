@@ -9,11 +9,11 @@ namespace BabaRh.AccessLayer.EntityFramework.Interfaces
 {
     public interface IQuizzAccessLayer
     {
-        int Add(Quizz quizz);
+        Task<int> AddAsync(Quizz quizz);
 
-        Quizz Update(Quizz quizz);
+        Task<Quizz> UpdateAsync(Quizz quizz);
 
-        void Delete(int quizzId);
+        Task<bool> DeleteAsync(int quizzId);
 
         Quizz Get(int quizzId);
 

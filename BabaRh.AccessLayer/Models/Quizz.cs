@@ -12,15 +12,13 @@ namespace BabaRh.AccessLayer.Models
     {
         public int QuizzId { get; set; }
 
-        public int CandidatId { get; set; }
-
         public DateTime Timer { get; set; }
 
         public int NbQuestion { get; set; }
 
         public string Url { get; set; }
 
-
+        public int CandidatId { get; set; }
         public Candidat Candidat { get; set; }
 
         public ICollection<QuizzModule> QuizzModule { get; set; }
