@@ -10,7 +10,7 @@
     {
         private readonly QuestionsService questionsService = new QuestionsService();
         private readonly ModulesService modulesService = new ModulesService();
-
+        private readonly ReponsesService reponsesService = new ReponsesService();
 
         // GET: Questions/Index
         public async Task<ActionResult> Index()

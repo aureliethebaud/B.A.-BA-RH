@@ -1,0 +1,64 @@
+﻿@model BabaRh.Web.Models.ViewModel.QuestionVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuestionVM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionLib)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionLib)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModuleLib)
+        </dt>
+
+
+        <dd>
+            @Html.DisplayFor(model => model.ModuleLib)
+        </dd>
+        <dt>
+            Réponses
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (var reponse in Model.ReponseLib)
+                {
+                    <li>@reponse.ReponseLib</li>
+                }
+            </ul>
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionOuverte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionOuverte)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
