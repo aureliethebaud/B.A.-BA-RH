@@ -26,6 +26,5 @@ namespace BabaRh.Web.Models.ViewModel
 
         [DataMember]
         public List<ReponseVM> Reponses { get; set; }
-
     }
 }

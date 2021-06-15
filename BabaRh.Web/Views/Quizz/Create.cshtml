@@ -1,0 +1,81 @@
+﻿@model BabaRh.Web.Models.ViewModel.QuizzCreateUpdateVM
+
+@{
+    ViewBag.Title = "Create Quizz";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Quizz</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SelectedCandidatId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SelectedCandidatId, Model.AvailableCandidats, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedCandidatId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SelectedModulesLibs, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(model => model.SelectedModulesLibs, Model.AvailableModules, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedModulesLibs, "", new { @class = "text-danger" })
+            </div >
+        </div >
+
+            @*<div class="form-group">
+        @Html.LabelFor(model => model.SelectedQuestionsIds, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.ListBoxFor(model => model.SelectedQuestionsIds, Model.AvailableQuestions, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SelectedQuestionsIds, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Quizz.NbQuestion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Quizz.NbQuestion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Quizz.NbQuestion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Quizz.Timer, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Quizz.Timer, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Quizz.Timer, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Quizz.Url, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Quizz.Url, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Quizz.Url, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -46,5 +46,58 @@ namespace BabaRh.Web.Services
 
             return null;
         }
+
+        public async Task<List<QuizzVM>> GetAll()
+        {
+            var response = await this.httpClient.GetAsync($"/api/quizzes");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                var quizzes = JsonConvert.DeserializeObject<List<QuizzVM>>(responseBody);
+
+                return quizzes;
+            }
+
+            return null;
+        }
+
+        public async Task<bool> Create(QuizzVM quizz)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(quizz), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PostAsync($"/api/quizzess", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> Update(QuizzVM quizz)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(quizz), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PutAsync($"/api/pizzas/{quizz.QuizzId}", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            var response = await this.httpClient.DeleteAsync($"/api/quizzes/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
