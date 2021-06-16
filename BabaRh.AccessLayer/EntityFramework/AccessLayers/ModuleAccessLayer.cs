@@ -43,6 +43,48 @@
 
 
         /// <summary>
+        ///       Permet la suppression d'un module de la base de données.
+        /// </summary>
+        /// <param name="moduleLib">Identifiant du module à supprimer.</param>
+        public async Task<bool> DeleteAsync(int moduleId)
+        {
+            var moduleToDelete = this.Get(moduleId);
+            if (moduleToDelete != null)
+            {
+                this.context.Modules.Remove(moduleToDelete);
+                this.context.SaveChanges();
+
+                var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
+
+                return result > 0;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        ///       Permet de retourner un module de la base de données.
+        /// </summary>
+        /// <param name="moduleLib">Identifiant du module à retourner.</param>
+        /// <returns>Le module retourné.</returns>
+        public Module Get(int moduleId)
+        {
+            return this.context.Modules.AsQueryable().SingleOrDefault(x => x.ModuleId == moduleId);
+        }
+
+        /// <summary>
+        ///       Permet de retourner tous les modules de la base de données.
+        /// </summary>
+        /// <returns>La liste des modules retournée.</returns>
+        public List<Module> GetAll()
+        {
+            return this.context.Modules.AsQueryable().ToList();
+        }
+
+
+        /// <summary>
         ///       Permet la mise à jour d'un module dans la base de données.
         /// </summary>
         /// <param name="module">Module à mettre à jour.</param>
@@ -62,47 +104,7 @@
             return result > 0;
         }
 
-
-        /// <summary>
-        ///       Permet la suppression d'un module de la base de données.
-        /// </summary>
-        /// <param name="moduleLib">Identifiant du module à supprimer.</param>
-        public async Task<bool> DeleteAsync(int moduleId)
-        {
-            var moduleToDelete = this.Get(moduleId);
-            if (moduleToDelete != null)
-            {
-                this.context.Modules.Remove(moduleToDelete);
-                var result = await this.context.SaveChangesAsync().ConfigureAwait(false);
-
-                return result > 0;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
-        /// <summary>
-        ///       Permet de retourner un module de la base de données.
-        /// </summary>
-        /// <param name="moduleLib">Identifiant du module à retourner.</param>
-        /// <returns>Le module retourné.</returns>
-        public Module Get(int moduleId)
-        {
-            return this.context.Modules.SingleOrDefault(x => x.ModuleId == moduleId);
-        }
-
-
-        /// <summary>
-        ///       Permet de retourner tous les modules de la base de données.
-        /// </summary>
-        /// <returns>La liste des modules retournée.</returns>
-        public List<Module> GetAll()
-        {
-            return this.context.Modules.ToList();
-        }
+    
 
     
     }

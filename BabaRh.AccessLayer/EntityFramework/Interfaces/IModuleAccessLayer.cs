@@ -10,9 +10,9 @@
 
         Task<bool> UpdateAsync(Module module);
 
-        Task<bool> DeleteAsync(int moduleId);
+        Task<bool> DeleteAsync(int ModuleId);
 
-        Module Get(int moduleId);
+        Module Get(int ModuleId);
 
         List<Module> GetAll();
 

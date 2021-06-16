@@ -36,9 +36,9 @@
             return null;
         }
 
-        public async Task<ModuleVM> Get(int moduleId)
+        public async Task<ModuleVM> Get(int id)
         {
-            var response = await this.httpClient.GetAsync($"/api/modules/{moduleId}");
+            var response = await this.httpClient.GetAsync($"/api/modules/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -52,9 +52,9 @@
         }
 
 
-        public async Task<bool> Create(ModuleVM moduleVM)
+        public async Task<bool> Create(ModuleVM module)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(moduleVM), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(module), Encoding.UTF8, "application/json");
             var response = await this.httpClient.PostAsync($"/api/modules", content);
 
             if (response.IsSuccessStatusCode)
@@ -78,9 +78,9 @@
 
             return false;
         }
-        public async Task<bool> Delete(int moduleId)
+        public async Task<bool> Delete(int id)
         {
-            var response = await this.httpClient.DeleteAsync($"/api/candidats/{moduleId}");
+            var response = await this.httpClient.DeleteAsync($"/api/candidats/{id}");
 
             if (response.IsSuccessStatusCode)
             {

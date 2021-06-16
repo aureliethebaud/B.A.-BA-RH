@@ -14,7 +14,7 @@ namespace BabaRh.Web.Models.ViewModel
         public int ModuleId { get; set; }
 
         [DataMember]
-        //[Display (Name="Modules")] ***** a supprimer ?
+        [Display (Name="Modules")]
         public string ModuleLib { get; set; }
 
         

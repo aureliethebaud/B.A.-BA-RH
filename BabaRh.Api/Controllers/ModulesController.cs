@@ -1,6 +1,7 @@
 ﻿
 using BabaRh.AccessLayer.EntityFramework.AccessLayers;
 using BabaRh.Api.Models;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -9,13 +10,17 @@ namespace BabaRh.Api.Controllers
     public class ModulesController : ApiController
     {
         private readonly ModuleAccessLayer moduleAccessLayer = ModuleAccessLayer.Instance;
-        private readonly QuestionAccessLayer questionAccessLayer = QuestionAccessLayer.Instance;
+       
 
         // GET api/modules
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-            var result = moduleAccessLayer.GetAll();
+            var result = moduleAccessLayer.GetAll().Select(m => new Module
+            {
+                ModuleId = m.ModuleId,
+                ModuleLib = m.ModuleLib
+            }); 
 
             return this.Ok(result);
         }
@@ -25,8 +30,17 @@ namespace BabaRh.Api.Controllers
         [HttpGet]
         public IHttpActionResult Get(int id)
         {
-            var result = moduleAccessLayer.Get(id);
-           
+            var fromDb = moduleAccessLayer.Get(id);
+
+            if (fromDb == null)
+                return this.NotFound();
+
+            var result = new Module
+            {
+                ModuleId = fromDb.ModuleId,
+                ModuleLib = fromDb.ModuleLib,
+            };
+
             return this.Ok(result);
         }
                         

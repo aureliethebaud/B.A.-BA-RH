@@ -12,18 +12,18 @@
         private readonly ModulesService modulesService = new ModulesService();
 
         // GET: Modules/Index
-        public async Task<ActionResult> Index()
-        
+        public async Task<ActionResult> Index()        
         {
-           var listModules = await modulesService.GetAll();
+           var modules = await modulesService.GetAll();
 
-            if (listModules == null)
+            if (modules == null)
             {
                 return HttpNotFound();
             }
 
-            return View(listModules);
+            return View(modules);
         }
+
         // GET: Modules/Details/5
         public async Task<ActionResult> Details(int? moduleId)
         {
@@ -68,14 +68,14 @@
         }
 
 
-        // GET: Modules/Edit
-        public async Task<ActionResult> Edit(int? moduleId)
+        // GET: Modules/Edit/id
+        public async Task<ActionResult> Edit(int? id)
         {
-            if (moduleId == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var module = await modulesService.Get((int)moduleId);
+            var module = await modulesService.Get((int)id);
             if (module == null)
             {
                 return HttpNotFound();
@@ -86,7 +86,7 @@
            
         }
 
-        // POST: Modules/Edit
+        // POST: Modules/Edit/id
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -104,14 +104,14 @@
         }
 
         // GET: Modules/Delete/id
-        public async Task<ActionResult> Delete(int? moduleId)
+        public async Task<ActionResult> Delete(int? id)
         {
-            if (moduleId == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var module = await modulesService.Get((int)moduleId);
+            var module = await modulesService.Get((int)id);
             if (module == null)
             {
                 return HttpNotFound();
@@ -122,9 +122,9 @@
         // POST: Modules/Delete/id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int moduleId)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await modulesService.Delete(moduleId).ConfigureAwait(false);
+            await modulesService.Delete(id).ConfigureAwait(false);
             return RedirectToAction("Index");
         }
 
