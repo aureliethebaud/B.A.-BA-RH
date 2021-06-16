@@ -81,8 +81,14 @@ namespace BabaRh.Web.Controllers
             {
                 vm.Quizz.Candidat = new CandidatVM { Id = vm.SelectedCandidatId };
                 vm.Quizz.Modules = vm.SelectedModulesLibs.Select(l => new ModuleVM { ModuleId = l }).ToList();
-                //vm.Quizz.Questions = vm.SelectedQuestionsIds.Select(i => new QuestionVM { QuestionId = i }).ToList();
-                vm.Quizz.Questions = (await questionService.GetAll()).Where(q => (vm.Quizz.Modules.Contains(q.Module))).ToList();
+                vm.Quizz.Questions = new List<QuestionVM>();
+                foreach (var module in vm.Quizz.Modules)
+                {
+                    var test = (await questionService.GetAll()).Where(q => q.Module.ModuleId == 2);
+                    vm.Quizz.Questions.AddRange((await questionService.GetAll()).Where(q => q.Module.ModuleId == module.ModuleId));
+                }
+
+                vm.Quizz.NbQuestion = vm.Quizz.Questions.Count();
 
                 await quizzService.Create(vm.Quizz);
                 return RedirectToAction("Index");
