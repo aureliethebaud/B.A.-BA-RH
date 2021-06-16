@@ -5,6 +5,7 @@
 
     public class Module
     {
+        [Key]
         public int ModuleId { get; set; }
 
         [Required, MaxLength(30)]

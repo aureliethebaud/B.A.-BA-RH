@@ -65,7 +65,7 @@ namespace BabaRh.Web.Services
         public async Task<bool> Create(QuizzVM quizz)
         {
             var content = new StringContent(JsonConvert.SerializeObject(quizz), Encoding.UTF8, "application/json");
-            var response = await this.httpClient.PostAsync($"/api/quizzess", content);
+            var response = await this.httpClient.PostAsync($"/api/quizzes", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -78,7 +78,7 @@ namespace BabaRh.Web.Services
         public async Task<bool> Update(QuizzVM quizz)
         {
             var content = new StringContent(JsonConvert.SerializeObject(quizz), Encoding.UTF8, "application/json");
-            var response = await this.httpClient.PutAsync($"/api/pizzas/{quizz.QuizzId}", content);
+            var response = await this.httpClient.PutAsync($"/api/quizzes/{quizz.QuizzId}", content);
 
             if (response.IsSuccessStatusCode)
             {

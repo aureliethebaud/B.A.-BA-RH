@@ -39,6 +39,8 @@
             return this.context.Quizzs.AsQueryable().AsNoTracking()
                 .Include(q => q.QuizzQuestion)
                 .Include(q => q.QuizzQuestion.Select(qq => qq.Question))
+                .Include(q => q.QuizzQuestion.Select(qq => qq.Question).Select(qqm => qqm.Niveau))
+                .Include(q => q.QuizzQuestion.Select(qq => qq.Question).Select(qqm => qqm.Module))
                 .Include(q => q.QuizzQuestion.Select(qq => qq.Question).Select(qqr => qqr.Reponse))
                 .Include(q => q.Candidat)
                 .Include(q => q.QuizzModule)

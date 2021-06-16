@@ -93,14 +93,13 @@ namespace BabaRh.AccessLayer.Migrations
                 c => new
                     {
                         QuizzId = c.Int(nullable: false),
-                        ModuleLib = c.String(nullable: false, maxLength: 128),
-                        Module_ModuleId = c.Int(),
+                        ModuleId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.QuizzId, t.ModuleLib })
-                .ForeignKey("dbo.Modules", t => t.Module_ModuleId)
+                .PrimaryKey(t => new { t.QuizzId, t.ModuleId })
+                .ForeignKey("dbo.Modules", t => t.ModuleId, cascadeDelete: true)
                 .ForeignKey("dbo.Quizzs", t => t.QuizzId, cascadeDelete: true)
                 .Index(t => t.QuizzId)
-                .Index(t => t.Module_ModuleId);
+                .Index(t => t.ModuleId);
             
             CreateTable(
                 "dbo.Reponses",
@@ -122,13 +121,13 @@ namespace BabaRh.AccessLayer.Migrations
             DropForeignKey("dbo.Reponses", "QuestionId", "dbo.Questions");
             DropForeignKey("dbo.QuizzQuestions", "QuizzId", "dbo.Quizzs");
             DropForeignKey("dbo.QuizzModules", "QuizzId", "dbo.Quizzs");
-            DropForeignKey("dbo.QuizzModules", "Module_ModuleId", "dbo.Modules");
+            DropForeignKey("dbo.QuizzModules", "ModuleId", "dbo.Modules");
             DropForeignKey("dbo.Quizzs", "CandidatId", "dbo.Candidats");
             DropForeignKey("dbo.QuizzQuestions", "QuestionId", "dbo.Questions");
             DropForeignKey("dbo.Questions", "NiveauId", "dbo.Niveaux");
             DropForeignKey("dbo.Questions", "ModuleId", "dbo.Modules");
             DropIndex("dbo.Reponses", new[] { "QuestionId" });
-            DropIndex("dbo.QuizzModules", new[] { "Module_ModuleId" });
+            DropIndex("dbo.QuizzModules", new[] { "ModuleId" });
             DropIndex("dbo.QuizzModules", new[] { "QuizzId" });
             DropIndex("dbo.Quizzs", new[] { "CandidatId" });
             DropIndex("dbo.QuizzQuestions", new[] { "QuestionId" });

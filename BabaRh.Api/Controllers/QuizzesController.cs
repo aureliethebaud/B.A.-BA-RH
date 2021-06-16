@@ -35,7 +35,7 @@ namespace BabaRh.Api.Controllers
                     },
                     Modules = quizz.QuizzModule.Select(qm => new Module
                     {
-                        ModuleLib = qm.ModuleLib
+                        ModuleId = qm.ModuleId
                     }).ToList()
                 });
                 
@@ -54,8 +54,16 @@ namespace BabaRh.Api.Controllers
                 Questions = fromDb.QuizzQuestion.Select(qq => new Question
                 {
                     QuestionId = qq.Question.QuestionId,
-                    //ModuleId = qq.Question.Module.ModuleId,
-                    //Niveau = qq.Question.NiveauId,
+                    Module = new Module
+                    {
+                        ModuleId = qq.Question.Module.ModuleId,
+                        ModuleLib = qq.Question.Module.ModuleLib
+                    },
+                    Niveau = new Niveau
+                    {
+                        NiveauId = qq.Question.Niveau.NiveauId,
+                        NiveauLib = qq.Question.Niveau.NiveauLib
+                    },
                     QuestionLib = qq.Question.QuestionLib,
                     QuestionOuverte = qq.Question.QuestionOuverte,
                     Reponses = qq.Question.Reponse.Select(r => new Reponse
@@ -77,7 +85,8 @@ namespace BabaRh.Api.Controllers
                 Url = fromDb.Url,
                 Modules = fromDb.QuizzModule.Select(qm => new Module
                 {
-                    ModuleLib = qm.ModuleLib
+                    ModuleId = qm.Module.ModuleId,
+                    ModuleLib = qm.Module.ModuleLib
                 }).ToList()
             };
             return this.Ok(result);
@@ -94,7 +103,7 @@ namespace BabaRh.Api.Controllers
                 Url = quizz.Url,
             };
 
-            quizzToAdd.QuizzModule = quizz.Modules.Select(mq => new AccessLayer.Models.QuizzModule { ModuleLib = mq.ModuleLib, QuizzId = quizzToAdd.QuizzId }).ToList();
+            quizzToAdd.QuizzModule = quizz.Modules.Select(mq => new AccessLayer.Models.QuizzModule { ModuleId = mq.ModuleId, QuizzId = quizzToAdd.QuizzId }).ToList();
             quizzToAdd.QuizzQuestion = quizz.Questions.Select(qq => new AccessLayer.Models.QuizzQuestion { QuestionId = qq.QuestionId, QuizzId = quizzToAdd.QuizzId }).ToList();
 
             await quizzAccessLayer.AddAsync(quizzToAdd);

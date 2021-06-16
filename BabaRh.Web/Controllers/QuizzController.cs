@@ -14,7 +14,7 @@ namespace BabaRh.Web.Controllers
     {
         private readonly QuizzService quizzService = new QuizzService();
         private readonly CandidatService candidatService = new CandidatService();
-        //private readonly QuestionService questionService = new QuestionService();
+        private readonly QuestionsService questionService = new QuestionsService();
         private readonly ModulesService moduleService = new ModulesService();
 
         // GET: Quizzes/Details/id
@@ -54,16 +54,17 @@ namespace BabaRh.Web.Controllers
                 module[i].ModuleId = i+1;
             }
 
-            var candidats = new SelectList(await candidatService.GetAll(), "Id", "Nom", "Prenom");
+            var candidats = new SelectList(await candidatService.GetAll(), "Id", "Nom");
             var modules = new SelectList(await moduleService.GetAll(), "ModuleId", "ModuleLib");
+            var questions = new SelectList(await questionService.GetAll(), "QuestionId", "QuestionLib");
 
             //var questions = new SelectList(await questionService.GetAll(), "Param1", "Param2", "...");
 
             var vm = new QuizzCreateUpdateVM
             {
                 AvailableCandidats = candidats,
-                AvailableModules = modules
-                //AvailableQuestions = questions
+                AvailableModules = modules,
+                AvailableQuestions = questions
             };
 
             return View(vm);
@@ -80,7 +81,8 @@ namespace BabaRh.Web.Controllers
             {
                 vm.Quizz.Candidat = new CandidatVM { Id = vm.SelectedCandidatId };
                 vm.Quizz.Modules = vm.SelectedModulesLibs.Select(l => new ModuleVM { ModuleId = l }).ToList();
-                //vm.Quizz.Questions = vm.SelectedQuestionsIds.Select(i => new Question { Id = i }).ToList();
+                //vm.Quizz.Questions = vm.SelectedQuestionsIds.Select(i => new QuestionVM { QuestionId = i }).ToList();
+                vm.Quizz.Questions = (await questionService.GetAll()).Where(q => (vm.Quizz.Modules.Contains(q.Module))).ToList();
 
                 await quizzService.Create(vm.Quizz);
                 return RedirectToAction("Index");

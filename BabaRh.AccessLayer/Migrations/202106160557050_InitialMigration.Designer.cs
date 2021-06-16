@@ -13,7 +13,7 @@ namespace BabaRh.AccessLayer.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202106151651367_InitialMigration"; }
+            get { return "202106160557050_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

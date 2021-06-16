@@ -31,10 +31,9 @@
             <dd>
                 @foreach (var question in Model.Questions)
                 {
-                    if (question.ModuleLib == module.ModuleLib)
+                    if (question.Module.ModuleId == module.ModuleId)
                     {
-                        @question.QuestionLib
-                        @question.Niveau
+                        @question.QuestionLib @question.Niveau.NiveauLib
                         <ul>
                             @foreach (var reponse in question.Reponses)
                             {

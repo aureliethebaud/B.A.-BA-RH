@@ -13,7 +13,7 @@ namespace BabaRh.Web.Models.ViewModel
     {
 
         [DataMember]
-        public string QuestionId { get; set; }
+        public int QuestionId { get; set; }
 
         [DataMember]
         [Display(Name = "Intitulé")]

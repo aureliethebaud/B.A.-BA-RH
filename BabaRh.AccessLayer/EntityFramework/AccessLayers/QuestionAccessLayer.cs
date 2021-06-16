@@ -97,6 +97,8 @@
         public Question Get(int questionId)
         {
             return this.context.Questions.AsQueryable()
+                .Include(q => q.Module)
+                .Include(q => q.Niveau)
                 .Include(q => q.Reponse).FirstOrDefault(q => q.QuestionId == questionId);
         }
 

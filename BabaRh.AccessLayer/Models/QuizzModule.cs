@@ -10,7 +10,7 @@
         public int QuizzId { get; set; }
         [Key]
         [Column(Order = 2)]
-        public string ModuleLib { get; set; }
+        public int ModuleId { get; set; }
 
         public Quizz Quizz { get; set; }
         public Module Module { get; set; }

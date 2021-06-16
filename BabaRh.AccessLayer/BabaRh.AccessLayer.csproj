@@ -67,9 +67,9 @@
     <Compile Include="EntityFramework\Interfaces\IQuestionAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IQuizzAccessLayer.cs" />
     <Compile Include="EntityFramework\Interfaces\IReponseAccessLayer.cs" />
-    <Compile Include="Migrations\202106151651367_InitialMigration.cs" />
-    <Compile Include="Migrations\202106151651367_InitialMigration.Designer.cs">
-      <DependentUpon>202106151651367_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202106160557050_InitialMigration.cs" />
+    <Compile Include="Migrations\202106160557050_InitialMigration.Designer.cs">
+      <DependentUpon>202106160557050_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agent.cs" />
@@ -89,8 +89,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106151651367_InitialMigration.resx">
-      <DependentUpon>202106151651367_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106160557050_InitialMigration.resx">
+      <DependentUpon>202106160557050_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
