@@ -2,6 +2,8 @@
 {
     using BabaRh.Web.Models.ViewModel;
     using BabaRh.Web.Services;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web.Mvc;
@@ -11,6 +13,7 @@
         private readonly QuestionsService questionsService = new QuestionsService();
         private readonly ModulesService modulesService = new ModulesService();
         private readonly NiveauxService niveauxService = new NiveauxService();
+
 
         // GET: Questions/Index
         public async Task<ActionResult> Index()
@@ -29,10 +32,13 @@
         {
             var modules = new SelectList(await modulesService.GetAll(), "ModuleId", "ModuleLib");
             var niveaux = new SelectList(await niveauxService.GetAll(), "NiveauId", "NiveauLib");
+            
+
             var vm = new QuestionCreateUpdateVM()
             {
                 AvailableModules = modules,
-                AvailableNiveaux = niveaux
+                AvailableNiveaux = niveaux,
+                
             };
             
             return View(vm);
@@ -50,6 +56,8 @@
 
                 vm.Question.Module = new ModuleVM { ModuleId = vm.SelectedModuleId };
                 vm.Question.Niveau = new NiveauVM { NiveauId = vm.SelectedNiveauId };
+                vm.Reponse = new ReponseVM();
+
                 await questionsService.Create(vm.Question);
                 return RedirectToAction("Index");
             }
@@ -71,7 +79,19 @@
                 return HttpNotFound();
             }
 
-            return View(question);
+            var modules = new SelectList(await modulesService.GetAll(), "moduleId", "moduleLib");
+            var niveaux = new SelectList(await niveauxService.GetAll(), "niveauId", "niveauLib");
+
+            var vm = new QuestionCreateUpdateVM
+            {
+                Question = question,
+                AvailableModules = modules,
+                AvailableNiveaux = niveaux,
+                SelectedModuleId = question.Module.ModuleId,
+                SelectedNiveauId = question.Niveau.NiveauId
+            };
+
+            return View(vm);
         }
 
         // POST: Reponses/Edit/id
@@ -79,15 +99,18 @@
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(QuestionVM question)
+        public async Task<ActionResult> Edit(QuestionCreateUpdateVM vm)
         {
             if (ModelState.IsValid)
             {
-                await questionsService.UpdateAsync(question);
+                vm.Question.Module = new ModuleVM { ModuleId = vm.SelectedModuleId };
+                vm.Question.Niveau = new NiveauVM { NiveauId = vm.SelectedNiveauId };
+
+                await questionsService.UpdateAsync(vm.Question);
                 return RedirectToAction("Index");
             }
 
-            return View(question);
+            return View(vm);
         }
 
         // GET: Questions/Delete/id

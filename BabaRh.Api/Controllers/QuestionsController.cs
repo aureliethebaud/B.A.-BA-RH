@@ -67,9 +67,12 @@
                 QuestionLib = question.QuestionLib,                
                 ModuleId = question.Module.ModuleId,
                 NiveauId = question.Niveau.NiveauId,
-                QuestionOuverte = question.QuestionOuverte,
+                QuestionOuverte = question.QuestionOuverte, 
+                
                 
             };
+            
+
 
             await questionAccessLayer.AddAsync(questionToAdd);
             return this.Ok("created");

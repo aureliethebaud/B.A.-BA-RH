@@ -1,56 +1,65 @@
 ﻿@model IEnumerable<BabaRh.Web.Models.ViewModel.QuizzVM>
 
+@Html.Partial("~/Views/Shared/_LayoutQuizzManager.cshtml")
+
 @{
     ViewBag.Title = "Index Quizzs";
 }
 
-<h2>Index</h2>
 
+<div class="marginAfterLeftNavBar">
 
+    <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 
-@{
-    List<int> candidats = new List<int>();
-    List<(int, List<int>)> candidatsQuizzes = new List<(int, List<int>)>();
+    @{
+        List<int> candidats = new List<int>();
+        List<(int, List<int>)> candidatsQuizzes = new List<(int, List<int>)>();
 
-    foreach (var quizz in Model)
-    {
-        if (!candidats.Contains(quizz.Candidat.Id))
-        {
-            candidats.Add(quizz.Candidat.Id);
-        }
-    }
-
-    foreach (var candidat in candidats)
-    {
-        List<int> quizzes = new List<int>();
         foreach (var quizz in Model)
         {
-            if (candidat == quizz.Candidat.Id)
+            if (!candidats.Contains(quizz.Candidat.Id))
             {
-                quizzes.Add(quizz.QuizzId);
+                candidats.Add(quizz.Candidat.Id);
             }
         }
-        candidatsQuizzes.Add((candidat, quizzes));
-    }
-}
 
-@foreach (var candidat in candidats)
-{
-    <dt>@Html.DisplayNameFor(model => model.Candidat)</dt>
-    <dd>@Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Nom @Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Prenom</dd>
-
-    <dt>Quizzes:</dt>
-    <dd>
-        <ul>
-            @foreach (var quizz in Model.Where(q => q.Candidat.Id == candidat))
+        foreach (var candidat in candidats)
+        {
+            List<int> quizzes = new List<int>();
+            foreach (var quizz in Model)
             {
-            <li>N°@quizz.QuizzId @Html.ActionLink("Détails", "Details", new { id = quizz.QuizzId })</li>
+                if (candidat == quizz.Candidat.Id)
+                {
+                    quizzes.Add(quizz.QuizzId);
+                }
             }
-        </ul>
-    </dd>
-}
+            candidatsQuizzes.Add((candidat, quizzes));
+        }
+    }
+
+    @foreach (var candidat in candidats)
+    {
+        <dt>@Html.DisplayNameFor(model => model.Candidat)</dt>
+        <dd>@Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Nom @Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Prenom</dd>
+
+        <dt>Quizzes:</dt>
+        <dd>
+            <ul>
+                @foreach (var quizz in Model.Where(q => q.Candidat.Id == candidat))
+                {
+                    <li>N°@quizz.QuizzId @Html.ActionLink("Détails", "Details", new { id = quizz.QuizzId })</li>
+                }
+            </ul>
+        </dd>
+    }
+</div>
+<style>
+    .marginAfterLeftNavBar {
+        margin-left: 180px;
+    }
+</style>
 

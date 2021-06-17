@@ -1,48 +1,92 @@
 ﻿@model IEnumerable<BabaRh.Web.Models.ViewModel.QuestionVM>
 
+
+@Html.Partial( "~/Views/Shared/_LayoutQuestionsManager.cshtml")
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Liste des questions</h2>
+<div class="marginAfterLeftNavBar">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.QuestionId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuestionLib)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QuestionOuverte)
-            </th>
-            <th></th>
-        </tr>
+    <h2>Liste des questions</h2>
 
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionLib)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionOuverte)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.QuestionId  }) |
-                @Html.ActionLink("Details", "Details", new { id = item.QuestionId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.QuestionId })
-            </td>
-        </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+
+
+    @{
+        List<int> modules = new List<int>();
+        List<(int, List<int>)> modulesQuestions = new List<(int, List<int>)>();
+
+        foreach (var question in Model)
+        {
+            if (!modules.Contains(question.Module.ModuleId))
+            {
+                modules.Add(question.Module.ModuleId);
+            }
+        }
+
+        foreach (var module in modules)
+        {
+            List<int> questions = new List<int>();
+            foreach (var question in Model)
+            {
+                if (module == question.Module.ModuleId)
+                {
+                    questions.Add(question.QuestionId);
+                }
+            }
+            modulesQuestions.Add((module, questions));
+        }
     }
 
-    </table>
+    @foreach (var module in modules)
+    {
+        <dl>
+            <dt>@Html.DisplayNameFor(model => model.Module)</dt>
+            <dd>@Model.FirstOrDefault(q => q.Module.ModuleId == module).Module.ModuleLib</dd>
+
+            <dd>                               
+                <table>
+                    <tr>
+                        <th>Niveau</th>
+                        <th>Question ouverte ?</th>
+                        <th>Intitulé de la question</th>
+                        <th>Action</th>
+                    </tr>
+                    @foreach (var question in Model.Where(q => q.Module.ModuleId == module).OrderBy(q => q.Niveau.NiveauId))
+                    {
+                        <tr>
+
+                            <td>@question.Niveau.NiveauLib</td>
+                            <td>@question.QuestionOuverte</td>
+                            <td>@question.QuestionLib</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = question.QuestionId }) |
+                                @Html.ActionLink("Details", "Details", new { id = question.QuestionId })  |                                
+                                @Html.ActionLink("Delete", "Delete", new { id = question.QuestionId })
+                            </td>
+                          
+                        </tr>
+                    }
+
+                    </table>                 
+
+            </dd>
+        </dl>
+    }
+
+</div>
+
+<style>
+    .marginAfterLeftNavBar
+    {
+        margin-left: 180px;
+    }    
+</style>
 
 
 

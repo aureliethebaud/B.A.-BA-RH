@@ -1,35 +1,44 @@
 ﻿@model IEnumerable<BabaRh.Web.Models.ViewModel.NiveauVM>
 
+@Html.Partial("~/Views/Shared/_LayoutQuestionsManager.cshtml")
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Liste des niveaux</h2>
+<div class="marginAfterLeftNavBar">
+    <h2>Liste des niveaux</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.NiveauLib)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
 
-@foreach (var item in Model) {
-    <tr>
-      
-        <td>
-            @Html.DisplayFor(modelItem => item.NiveauLib)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.NiveauId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.NiveauId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.NiveauId })
-        </td>
-    </tr>
-}
+            <th>
+                @Html.DisplayNameFor(model => model.NiveauLib)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NiveauLib)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NiveauId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NiveauId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<style>
+    .marginAfterLeftNavBar {
+        margin-left: 180px;
+    }
+</style>

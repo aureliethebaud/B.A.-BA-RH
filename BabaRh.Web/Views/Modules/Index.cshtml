@@ -1,35 +1,45 @@
 ﻿@model IEnumerable<BabaRh.Web.Models.ViewModel.ModuleVM>
 
+@Html.Partial("~/Views/Shared/_LayoutQuestionsManager.cshtml")
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="marginAfterLeftNavBar">
+    <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.ModuleLib)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
 
-@foreach (var item in Model) {
-    <tr>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.ModuleLib)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ModuleId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ModuleId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ModuleId }) 
-        </td>
-    </tr>
-}
+            <th>
+                @Html.DisplayNameFor(model => model.ModuleLib)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModuleLib)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ModuleId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ModuleId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ModuleId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<style>
+    .marginAfterLeftNavBar {
+        margin-left: 180px;
+    }
+</style>

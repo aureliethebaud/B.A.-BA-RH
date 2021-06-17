@@ -24,22 +24,7 @@
 
             return View(niveaux);
         }
-        // GET: Niveaux/Details/5
-        public async Task<ActionResult> Details(int? niveauId)
-        {
-            if (niveauId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var niveau = await niveauxService.Get((int)niveauId);
-            if (niveau == null)
-            {
-                return HttpNotFound();
-            }
-            return View(niveau);
-        }
-
+      
 
         //GET: Niveaux/Create
         public ActionResult Create()
