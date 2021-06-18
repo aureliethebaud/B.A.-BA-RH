@@ -47,7 +47,7 @@
     @foreach (var module in modules)
     {
 
-        <h3>@Html.DisplayNameFor(model => model.Module) :<span id="module">@Model.FirstOrDefault(q => q.Module.ModuleId == module).Module.ModuleLib</span></h3>
+        <h3>@Html.DisplayNameFor(model => model.Module) : <span class="module">@Model.FirstOrDefault(q => q.Module.ModuleId == module).Module.ModuleLib</span></h3>
 
 
 
@@ -106,8 +106,8 @@
         width: 210px;       
     }
 
-    .module{
-        
+    .module {
+        color: #EB4C42;
     }
 
     .openQuestion{

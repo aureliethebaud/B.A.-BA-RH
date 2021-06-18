@@ -12,7 +12,7 @@
     <h2>Index des quizzes par candidats</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create", "Quizz", new { @class = "btn btn-primary" })
     </p>
 
     @{
@@ -41,30 +41,73 @@
         }
     }
 
+    
+<table class="table">
+    <tr>
+        <th scope="col">Candidat</th>
+        <th scope="col">Quizz</th>
+        <th scope="col">Action</th>
+    </tr>
     @foreach (var candidat in candidats)
     {
-        <dl>
+        foreach (var quizz in Model.Where(q => q.Candidat.Id == candidat))
+        {
+            <tr>
+                <td class="candidat">@Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Nom @Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Prenom</td>
+                <td class="quizz">"Quizz N°@quizz.QuizzId</td>
+                <td class="actionbutton">
+                    @Html.ActionLink("Détails", "Details", new { id = quizz.QuizzId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Edit", "Edit", new { id = quizz.QuizzId }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    }
+    </table>
+        
+        
+        @*<dl>
             <dt>@Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Nom @Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Prenom</dt>
 
             <dd>
                 <ul>
                     @foreach (var quizz in Model.Where(q => q.Candidat.Id == candidat))
                     {
-                        <li>
-                            Quizz N°@quizz.QuizzId
-                            @Html.ActionLink("Détails", "Details", new { id = quizz.QuizzId })
-                            @Html.ActionLink("Edit", "Edit", new { id = quizz.QuizzId })
+                        <li>"Quizz N°@quizz.QuizzId
+                    @Html.ActionLink("Détails", "Details", new { id = quizz.QuizzId })
+                    @Html.ActionLink("Edit", "Edit", new { id = quizz.QuizzId })
                         </li>
                     }
                 </ul>
             </dd>
-        </dl>
-    }
+        </dl>*@
+    
 </div>
 
 <style>
     .marginAfterLeftNavBar {
         margin-left: 180px;
     }
+
+    th, td {
+        padding-right: 20px;
+    }
+
+    table {
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .actionbutton {
+        width: 70px;
+    }
+
+    .candidat {
+        width:110px;
+    }
+
+    .quizz {
+        width: 70px;
+    }
+
 </style>
 

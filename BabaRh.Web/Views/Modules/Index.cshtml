@@ -10,7 +10,7 @@
     <h2>Index</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create", "Modules", new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -29,9 +29,8 @@
                     @Html.DisplayFor(modelItem => item.ModuleLib)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ModuleId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ModuleId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ModuleId })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ModuleId }, new { @class = "btn btn-info" })                   
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ModuleId }, new { @class = "btn btn-warning" })
                 </td>
             </tr>
         }

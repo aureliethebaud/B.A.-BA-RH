@@ -10,7 +10,7 @@
     <h2>Liste des niveaux</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create", "Niveaux", new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -29,8 +29,8 @@
                     @Html.DisplayFor(modelItem => item.NiveauLib)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.NiveauId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.NiveauId })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NiveauId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NiveauId }, new { @class = "btn btn-warning" })
                 </td>
             </tr>
         }
