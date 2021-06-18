@@ -115,15 +115,11 @@ namespace BabaRh.Api.Controllers
         {
             var quizzToUpdate = new AccessLayer.Models.Quizz
             {
-                Candidat = new AccessLayer.Models.Candidat
-                {
-                    CandidatId = quizz.Candidat.Id,
-                    Nom = quizz.Candidat.Nom,
-                    Prenom = quizz.Candidat.Prenom
-                },
+                CandidatId = quizz.Candidat.Id,
                 NbQuestion = quizz.NbQuestion,
                 Chrono = quizz.Chrono,
                 Url = quizz.Url,
+                QuizzId = quizz.QuizzId
             };
 
             await quizzAccessLayer.UpdateAsync(quizzToUpdate);

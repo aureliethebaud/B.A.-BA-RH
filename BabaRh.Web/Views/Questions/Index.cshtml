@@ -10,9 +10,10 @@
 <div class="marginAfterLeftNavBar">
 
     <h2>Liste des questions</h2>
+   
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create", "Questions", new { @class = "btn btn-primary" })
     </p>
 
 
@@ -45,39 +46,37 @@
 
     @foreach (var module in modules)
     {
-        <dl>
-            <dt>@Html.DisplayNameFor(model => model.Module)</dt>
-            <dd>@Model.FirstOrDefault(q => q.Module.ModuleId == module).Module.ModuleLib</dd>
 
-            <dd>   
-                <div class="tableau">
-                    <table class="table">
-                        <tr>
-                            <th scope="col">Niveau</th>
-                            <th scope="col">Question ouverte ?</th>
-                            <th scope="col">Intitulé de la question</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                        @foreach (var question in Model.Where(q => q.Module.ModuleId == module).OrderBy(q => q.Niveau.NiveauId))
-                        {
-                            <tr>
+        <h3>@Html.DisplayNameFor(model => model.Module) :<span id="module">@Model.FirstOrDefault(q => q.Module.ModuleId == module).Module.ModuleLib</span></h3>
 
-                                <td>@question.Niveau.NiveauLib</td>
-                                <td class="openQuestion">@question.QuestionOuverte</td>
-                                <td>@question.QuestionLib</td>
-                                <td class="actionbutton">
-                                    @Html.ActionLink("Edit", "Edit", new { id = question.QuestionId }) |
-                                    @Html.ActionLink("Details", "Details", new { id = question.QuestionId })  |
-                                    @Html.ActionLink("Delete", "Delete", new { id = question.QuestionId })
-                                </td>
 
-                            </tr>
-                        }
 
-                    </table>
-                </div>
-            </dd>
-        </dl>
+        
+            <table class="table">
+                <tr>
+                    <th scope="col">Niveau</th>
+                    <th scope="col">Question ouverte ?</th>
+                    <th scope="col">Intitulé de la question</th>
+                    <th scope="col">Action</th>
+                </tr>
+                @foreach (var question in Model.Where(q => q.Module.ModuleId == module).OrderBy(q => q.Niveau.NiveauId))
+                {
+                    <tr>
+
+                        <td>@question.Niveau.NiveauLib</td>
+                        <td class="openQuestion">@question.QuestionOuverte</td>
+                        <td>@question.QuestionLib</td>
+                        <td class="actionbutton">
+                            @Html.ActionLink("Details", "Details", new { id = question.QuestionId }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Edit", "Edit", new { id = question.QuestionId }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Delete", "Delete", new { id = question.QuestionId }, new { @class = "btn btn-warning" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+       
+
     }
 
 </div>
@@ -87,7 +86,10 @@
     {
         margin-left: 180px;
     }
-    
+
+    h3 {
+        margin-top:40px;
+    }
     
     th, td{        
         padding-right:20px;    
@@ -96,13 +98,16 @@
     }
 
     table{
-        margin-left:20px;
-        margin-bottom:25px;
+        margin-left:20px;        
         margin-top:10px;                  
     }
 
     .actionbutton {
-        width: 170px; 
+        width: 210px;       
+    }
+
+    .module{
+        
     }
 
     .openQuestion{

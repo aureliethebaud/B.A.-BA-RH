@@ -110,7 +110,7 @@ namespace BabaRh.Web.Controllers
                 return HttpNotFound();
             }
 
-            var quizzToUpdate = await quizzService.Get((int)id);
+            //var quizzToUpdate = await quizzService.Get((int)id);
 
             var module = (await moduleService.GetAll());
             for (int i = 0; i < module.Count; i++)
@@ -122,7 +122,7 @@ namespace BabaRh.Web.Controllers
             var modules = new SelectList(await moduleService.GetAll(), "ModuleId", "ModuleLib");
             var questions = new SelectList(await questionService.GetAll(), "QuestionId", "QuestionLib");
 
-            //var questions = new SelectList(await questionService.GetAll(), "Param1", "Param2", "...");
+            ////var questions = new SelectList(await questionService.GetAll(), "Param1", "Param2", "...");
 
             var vm = new QuizzCreateUpdateVM
             {
@@ -149,15 +149,17 @@ namespace BabaRh.Web.Controllers
             {
                 vm.Quizz.Candidat = new CandidatVM { Id = vm.SelectedCandidatId };
                 vm.Quizz.Modules = vm.SelectedModulesLibs.Select(l => new ModuleVM { ModuleId = l }).ToList();
+
+                
                 vm.Quizz.Questions = new List<QuestionVM>();
                 foreach (var module in vm.Quizz.Modules)
                 {
                     vm.Quizz.Questions.AddRange((await questionService.GetAll()).Where(q => q.Module.ModuleId == module.ModuleId));
                 }
 
-                vm.Quizz.NbQuestion = vm.Quizz.Questions.Count();
+               // vm.Quizz.NbQuestion = vm.Quizz.Questions.Count();
 
-                await quizzService.Create(vm.Quizz);
+                await quizzService.Update(vm.Quizz);
                 return RedirectToAction("Index");
             }
 

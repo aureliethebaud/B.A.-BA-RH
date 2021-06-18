@@ -80,20 +80,19 @@
         /// <returns>Le quizz modifié.</returns>
         public async Task<Quizz> UpdateAsync(Quizz quizz)
         {
-            var quizzToUpdate = this.context.Quizzs.AsQueryable().FirstOrDefault(q => q.QuizzId == quizz.QuizzId);
+            var quizzToUpdate = this.context.Quizzs.FirstOrDefault(q => q.QuizzId == quizz.QuizzId);
 
             if (quizzToUpdate != null)
             {
-                quizzToUpdate.CandidatId = quizz.CandidatId;
-                quizzToUpdate.Candidat = quizz.Candidat;
+                quizzToUpdate.CandidatId = quizz.CandidatId;            
                 quizzToUpdate.NbQuestion = quizz.NbQuestion;
                 quizzToUpdate.QuizzModule = quizz.QuizzModule;
                 quizzToUpdate.QuizzQuestion = quizz.QuizzQuestion;
                 quizzToUpdate.Chrono = quizz.Chrono;
                 quizzToUpdate.Url = quizz.Url;
             }
-
-            await this.context.SaveChangesAsync().ConfigureAwait(false);
+           
+            this.context.SaveChanges();
 
             return quizz;
         }
