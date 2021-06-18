@@ -80,7 +80,7 @@
         /// <returns>Le quizz modifié.</returns>
         public async Task<Quizz> UpdateAsync(Quizz quizz)
         {
-            var quizzToUpdate = this.Get(quizz.QuizzId);
+            var quizzToUpdate = this.context.Quizzs.AsQueryable().FirstOrDefault(q => q.QuizzId == quizz.QuizzId);
 
             if (quizzToUpdate != null)
             {
@@ -104,7 +104,7 @@
         /// <param name="quizzId">Identifiant du quizz à supprimer.</param>
         public async Task<bool> DeleteAsync(int quizzId)
         {
-            var quizzToDelete = this.Get(quizzId);
+            var quizzToDelete = this.context.Quizzs.AsQueryable().FirstOrDefault(q => q.QuizzId == quizzId);
             if (quizzToDelete != null)
             {
                 this.context.Quizzs.Remove(quizzToDelete);

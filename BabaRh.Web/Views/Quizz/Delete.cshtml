@@ -1,0 +1,44 @@
+﻿@model BabaRh.Web.Models.ViewModel.QuizzVM
+
+@{
+    ViewBag.Title = "Delete Quizz";
+}
+
+<h2>Delete</h2>
+
+<h3>Voulez-vous vraiment supprimer ce quizz ?</h3>
+
+<table class="table table-striped">
+    @if (true)
+    {
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.QuizzId)</th>
+            <th>@Html.DisplayNameFor(model => model.Candidat.Nom)</th>
+            <th>@Html.DisplayNameFor(model => model.Candidat.Prenom)</th>
+            <th>@Html.DisplayNameFor(model => model.Modules)</th>
+            
+        </tr>
+        <tr>
+            <td>@Model.QuizzId</td>
+            <td>@Model.Candidat.Nom</td>
+            <td>@Model.Candidat.Prenom</td>
+            <th>
+                @foreach (var module in Model.Modules)
+                {
+                    @module.ModuleLib;
+                }
+            </th>
+        </tr>
+    }
+
+</table>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

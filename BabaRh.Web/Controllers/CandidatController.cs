@@ -77,6 +77,7 @@ namespace BabaRh.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                candidat.Nom = candidat.Nom.ToUpper();
                 await candidatService.UpdateAsync(candidat);
                 return RedirectToAction("Index");
             }

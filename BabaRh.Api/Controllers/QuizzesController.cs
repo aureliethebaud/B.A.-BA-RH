@@ -141,7 +141,7 @@ namespace BabaRh.Api.Controllers
                 return this.NotFound();
             }
 
-            await quizzAccessLayer.DeleteAsync(quizzToDelete.CandidatId);
+            await quizzAccessLayer.DeleteAsync(quizzToDelete.QuizzId);
             return this.Ok("Delete");
         }
 

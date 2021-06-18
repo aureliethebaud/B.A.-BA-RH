@@ -159,6 +159,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\image2.jpg" />
+    <Content Include="Content\Image\B-A-BA-RH.ico" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -219,6 +220,8 @@
     <Content Include="Views\Questions\Details.cshtml" />
     <Content Include="Views\Shared\_LayoutQuestionsManager.cshtml" />
     <Content Include="Views\Shared\_LayoutQuizzManager.cshtml" />
+    <Content Include="Views\Quizz\Edit.cshtml" />
+    <Content Include="Views\Quizz\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

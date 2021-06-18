@@ -9,7 +9,7 @@
 
 <div class="marginAfterLeftNavBar">
 
-    <h2>Index</h2>
+    <h2>Index des quizzes par candidats</h2>
 
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -43,20 +43,25 @@
 
     @foreach (var candidat in candidats)
     {
-        <dt>@Html.DisplayNameFor(model => model.Candidat)</dt>
-        <dd>@Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Nom @Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Prenom</dd>
+        <dl>
+            <dt>@Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Nom @Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Prenom</dt>
 
-        <dt>Quizzes:</dt>
-        <dd>
-            <ul>
-                @foreach (var quizz in Model.Where(q => q.Candidat.Id == candidat))
-                {
-                    <li>N°@quizz.QuizzId @Html.ActionLink("Détails", "Details", new { id = quizz.QuizzId })</li>
-                }
-            </ul>
-        </dd>
+            <dd>
+                <ul>
+                    @foreach (var quizz in Model.Where(q => q.Candidat.Id == candidat))
+                    {
+                        <li>
+                            Quizz N°@quizz.QuizzId
+                            @Html.ActionLink("Détails", "Details", new { id = quizz.QuizzId })
+                            @Html.ActionLink("Edit", "Edit", new { id = quizz.QuizzId })
+                        </li>
+                    }
+                </ul>
+            </dd>
+        </dl>
     }
 </div>
+
 <style>
     .marginAfterLeftNavBar {
         margin-left: 180px;
