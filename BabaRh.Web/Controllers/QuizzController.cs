@@ -84,7 +84,6 @@ namespace BabaRh.Web.Controllers
                 vm.Quizz.Questions = new List<QuestionVM>();
                 foreach (var module in vm.Quizz.Modules)
                 {
-                    var test = (await questionService.GetAll()).Where(q => q.Module.ModuleId == 2);
                     vm.Quizz.Questions.AddRange((await questionService.GetAll()).Where(q => q.Module.ModuleId == module.ModuleId));
                 }
 
