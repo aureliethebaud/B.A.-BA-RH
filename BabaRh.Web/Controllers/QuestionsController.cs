@@ -33,15 +33,11 @@
             var modules = new SelectList(await modulesService.GetAll(), "ModuleId", "ModuleLib");
             var niveaux = new SelectList(await niveauxService.GetAll(), "NiveauId", "NiveauLib");
            
-
             var vm = new QuestionCreateUpdateVM()
             {
                 AvailableModules = modules,
                 AvailableNiveaux = niveaux,                      
             };
-
-            
-            
             return View(vm);
         }
 
@@ -59,8 +55,19 @@
                 vm.Question.Niveau = new NiveauVM { NiveauId = vm.SelectedNiveauId };
                 
                 await questionsService.Create(vm.Question);
-                //vm.Reponse.QuestionId = vm.Question.QuestionId;                
-                await reponsesService.Create(vm.Reponse);
+                vm.Question.QuestionId =
+                    (await questionsService.GetAll())
+                    .FirstOrDefault(q => q.QuestionLib == vm.Question.QuestionLib)
+                    .QuestionId;
+
+                foreach (var reponse in vm.Reponses)
+                {
+                    if (reponse.ReponseLib != null & reponse.ReponseLib != "")
+                    {
+                        reponse.QuestionId = vm.Question.QuestionId;
+                        await reponsesService.Create(reponse);
+                    }
+                }
                 return RedirectToAction("Index");
             }
 

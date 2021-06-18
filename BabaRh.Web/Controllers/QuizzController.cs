@@ -45,7 +45,7 @@ namespace BabaRh.Web.Controllers
             return View(quizzes);
         }
 
-        // GET: Pizzas/Create
+        // GET: Quizzes/Create
         public async Task<ActionResult> Create()
         {
             var module = (await moduleService.GetAll());
@@ -64,7 +64,7 @@ namespace BabaRh.Web.Controllers
             {
                 AvailableCandidats = candidats,
                 AvailableModules = modules,
-                AvailableQuestions = questions
+                AvailableQuestions = questions,
             };
 
             return View(vm);

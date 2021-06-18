@@ -24,7 +24,7 @@ namespace BabaRh.Api.Controllers
             var result = new Reponse
             {
                 ReponseId = fromDb.ReponseId,                
-                //Question = new Question { QuestionId = fromDb.QuestionId, QuestionLib = fromDb.Question.QuestionLib },
+                QuestionId = fromDb.QuestionId ,
                 ReponseLib = fromDb.ReponseLib,
                 IsOk = fromDb.IsOk
             };
@@ -43,7 +43,7 @@ namespace BabaRh.Api.Controllers
             var result = reponseAccessLayer.GetAll().Select(r => new Reponse
             {
                 ReponseId = r.ReponseId,                
-                //Question = new Question { QuestionId = r.Question.QuestionId, QuestionLib = r.Question.QuestionLib },
+                QuestionId = r.QuestionId,
                 ReponseLib = r.ReponseLib,
                 IsOk = r.IsOk
             });
@@ -59,7 +59,8 @@ namespace BabaRh.Api.Controllers
             var reponseToAdd = new AccessLayer.Models.Reponse
             {
                 ReponseLib = reponse.ReponseLib,
-                IsOk = reponse.IsOk
+                IsOk = reponse.IsOk,
+                QuestionId = reponse.QuestionId
             };
 
             await reponseAccessLayer.AddAsync(reponseToAdd);
@@ -73,7 +74,8 @@ namespace BabaRh.Api.Controllers
             {
                 ReponseId = reponse.ReponseId,
                 ReponseLib = reponse.ReponseLib,
-                IsOk = reponse.IsOk
+                IsOk = reponse.IsOk,
+                QuestionId = reponse.QuestionId
             };
 
             await reponseAccessLayer.UpdateAsync(reponseToUpdate);

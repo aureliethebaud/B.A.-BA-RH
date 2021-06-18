@@ -14,14 +14,16 @@ namespace BabaRh.Web.Models.ViewModel
         public int ReponseId { get; set; }
 
         [DataMember]
-        [Display(Name = "Libellé")]
+        //[Display(Name = "Libellé")]
         public string ReponseLib { get; set; }
 
         [DataMember]
-        [Display(Name = "Réponse juste ?")]
+        //[Display(Name = "Réponse juste ?")]
         public bool IsOK { get; set; }
 
         [DataMember]
         public int QuestionId { get; set; }
+
+
     }
 }
