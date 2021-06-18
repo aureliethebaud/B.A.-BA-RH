@@ -49,32 +49,33 @@
             <dt>@Html.DisplayNameFor(model => model.Module)</dt>
             <dd>@Model.FirstOrDefault(q => q.Module.ModuleId == module).Module.ModuleLib</dd>
 
-            <dd>                               
-                <table>
-                    <tr>
-                        <th>Niveau</th>
-                        <th>Question ouverte ?</th>
-                        <th>Intitulé de la question</th>
-                        <th>Action</th>
-                    </tr>
-                    @foreach (var question in Model.Where(q => q.Module.ModuleId == module).OrderBy(q => q.Niveau.NiveauId))
-                    {
+            <dd>   
+                <div class="tableau">
+                    <table class="table">
                         <tr>
-
-                            <td>@question.Niveau.NiveauLib</td>
-                            <td>@question.QuestionOuverte</td>
-                            <td>@question.QuestionLib</td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = question.QuestionId }) |
-                                @Html.ActionLink("Details", "Details", new { id = question.QuestionId })  |                                
-                                @Html.ActionLink("Delete", "Delete", new { id = question.QuestionId })
-                            </td>
-                          
+                            <th scope="col">Niveau</th>
+                            <th scope="col">Question ouverte ?</th>
+                            <th scope="col">Intitulé de la question</th>
+                            <th scope="col">Action</th>
                         </tr>
-                    }
+                        @foreach (var question in Model.Where(q => q.Module.ModuleId == module).OrderBy(q => q.Niveau.NiveauId))
+                        {
+                            <tr>
 
-                    </table>                 
+                                <td>@question.Niveau.NiveauLib</td>
+                                <td class="openQuestion">@question.QuestionOuverte</td>
+                                <td>@question.QuestionLib</td>
+                                <td class="actionbutton">
+                                    @Html.ActionLink("Edit", "Edit", new { id = question.QuestionId }) |
+                                    @Html.ActionLink("Details", "Details", new { id = question.QuestionId })  |
+                                    @Html.ActionLink("Delete", "Delete", new { id = question.QuestionId })
+                                </td>
 
+                            </tr>
+                        }
+
+                    </table>
+                </div>
             </dd>
         </dl>
     }
@@ -85,7 +86,29 @@
     .marginAfterLeftNavBar
     {
         margin-left: 180px;
-    }    
+    }
+    
+    
+    th, td{        
+        padding-right:20px;    
+
+      
+    }
+
+    table{
+        margin-left:20px;
+        margin-bottom:25px;
+        margin-top:10px;                  
+    }
+
+    .actionbutton {
+        width: 170px; 
+    }
+
+    .openQuestion{
+        width:90px;
+    }
+    
 </style>
 
 
