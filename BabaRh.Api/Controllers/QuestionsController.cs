@@ -67,9 +67,7 @@
                 QuestionLib = question.QuestionLib,                
                 ModuleId = question.Module.ModuleId,
                 NiveauId = question.Niveau.NiveauId,
-                QuestionOuverte = question.QuestionOuverte, 
-                
-                
+                QuestionOuverte = question.QuestionOuverte
             };
             
 

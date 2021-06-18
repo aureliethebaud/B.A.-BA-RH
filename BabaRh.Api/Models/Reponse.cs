@@ -19,7 +19,7 @@ namespace BabaRh.Api.Models
         public bool IsOk { get; set; }        
 
         [DataMember]
-        public Question Question { get; set; }
+        public int QuestionId { get; set; }
 
     }
 }
