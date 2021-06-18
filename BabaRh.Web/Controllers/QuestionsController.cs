@@ -13,7 +13,7 @@
         private readonly QuestionsService questionsService = new QuestionsService();
         private readonly ModulesService modulesService = new ModulesService();
         private readonly NiveauxService niveauxService = new NiveauxService();
-
+        private readonly ReponsesService reponsesService = new ReponsesService();
 
         // GET: Questions/Index
         public async Task<ActionResult> Index()
@@ -32,14 +32,15 @@
         {
             var modules = new SelectList(await modulesService.GetAll(), "ModuleId", "ModuleLib");
             var niveaux = new SelectList(await niveauxService.GetAll(), "NiveauId", "NiveauLib");
-            
+           
 
             var vm = new QuestionCreateUpdateVM()
             {
                 AvailableModules = modules,
-                AvailableNiveaux = niveaux,
-                
+                AvailableNiveaux = niveaux,                      
             };
+
+            
             
             return View(vm);
         }
@@ -56,9 +57,10 @@
 
                 vm.Question.Module = new ModuleVM { ModuleId = vm.SelectedModuleId };
                 vm.Question.Niveau = new NiveauVM { NiveauId = vm.SelectedNiveauId };
-                vm.Reponse = new ReponseVM();
-
+                
                 await questionsService.Create(vm.Question);
+                //vm.Reponse.QuestionId = vm.Question.QuestionId;                
+                await reponsesService.Create(vm.Reponse);
                 return RedirectToAction("Index");
             }
 

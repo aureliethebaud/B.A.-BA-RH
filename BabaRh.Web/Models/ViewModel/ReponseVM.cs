@@ -21,5 +21,7 @@ namespace BabaRh.Web.Models.ViewModel
         [Display(Name = "Réponse juste ?")]
         public bool IsOK { get; set; }
 
+        [DataMember]
+        public int QuestionId { get; set; }
     }
 }

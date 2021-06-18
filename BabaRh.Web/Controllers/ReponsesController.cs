@@ -8,7 +8,7 @@
 
     public class ReponsesController : Controller
     {
-        private readonly ReponsesService reponsesService = new ReponsesService();
+       private readonly ReponsesService reponsesService = new ReponsesService();
        private readonly QuestionsService questionsService = new QuestionsService();
 
         // GET: Reponses/Index
