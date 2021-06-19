@@ -10,11 +10,12 @@ namespace BabaRh.Web.Models.ViewModel
     [DataContract]
     public class ModuleVM
     {
-        [DataMember]
+        [DataMember]       
         public int ModuleId { get; set; }
 
         [DataMember]
         [Display (Name="Module")]
+        [Required(ErrorMessage = "Le libellé du module est requis")]
         public string ModuleLib { get; set; }
 
         

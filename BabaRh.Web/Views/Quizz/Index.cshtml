@@ -3,16 +3,16 @@
 @Html.Partial("~/Views/Shared/_LayoutQuizzManager.cshtml")
 
 @{
-    ViewBag.Title = "Index Quizzs";
+    ViewBag.Title = "Liste des quiz";
 }
 
 
 <div class="marginAfterLeftNavBar">
 
-    <h2>Index des quizzes par candidats</h2>
+    <h2>Liste des quiz par candidat</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create", "Quizz", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Ajouter nouveau quiz", "Create", "Quizz", new { @class = "btn btn-primary" })
     </p>
 
     @{
@@ -45,7 +45,7 @@
 <table class="table">
     <tr>
         <th scope="col">Candidat</th>
-        <th scope="col">Quizz</th>
+        <th scope="col">Quiz</th>
         <th scope="col">Action</th>
     </tr>
     @foreach (var candidat in candidats)
@@ -54,10 +54,11 @@
         {
             <tr>
                 <td class="candidat">@Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Nom @Model.FirstOrDefault(q => q.Candidat.Id == candidat).Candidat.Prenom</td>
-                <td class="quizz">"Quizz N°@quizz.QuizzId</td>
+                <td class="quizz">Quiz N°@quizz.QuizzId</td>
                 <td class="actionbutton">
-                    @Html.ActionLink("Détails", "Details", new { id = quizz.QuizzId }, new { @class = "btn btn-info" })
-                    @Html.ActionLink("Edit", "Edit", new { id = quizz.QuizzId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Détails", "Details", new { id = quizz.QuizzId }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Editer", "Edit", new { id = quizz.QuizzId }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Supprimer", "Delete", new { id = quizz.QuizzId }, new { @class = "btn btn-warning" })
                 </td>
             </tr>
         }

@@ -4,11 +4,11 @@
     ViewBag.Title = "Delete Candidat";
 }
 
-<h2>Delete</h2>
+<h2>Supprimer</h2>
 
 <h3>Voulez-vous vraiment supprimer ce candidat ?</h3>
 
-<table class="table table-striped">
+<table class="table">
     @if (true)
     {
         <tr>
@@ -30,7 +30,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Supprimer" class="btn btn-default" /> |
+        @Html.ActionLink("Retour à la liste", "Index")
     </div>
 }

@@ -193,7 +193,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Quizz\Details.cshtml" />
     <Content Include="Views\Quizz\_Info.cshtml" />
-    <Content Include="Views\Candidat\_Info.cshtml" />
     <Content Include="Views\Candidat\Index.cshtml" />
     <Content Include="Views\Candidat\Create.cshtml" />
     <Content Include="Views\Candidat\Edit.cshtml" />

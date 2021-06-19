@@ -1,10 +1,53 @@
 ﻿@model List<BabaRh.Web.Models.ViewModel.CandidatVM>
 
+
+@Html.Partial("~/Views/Shared/_LayoutQuizzManager.cshtml")
+
 @{
-    ViewBag.Title = "Index Candidats";
+    ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="marginAfterLeftNavBar">
 
-@Html.Partial("_Info")
+    <h2>Liste des candidats</h2>
+
+    <p>
+        @Html.ActionLink("Ajouter nouveau candidat", "Create", "Candidat", new { @class = "btn btn-primary" })
+    </p>
+
+    <table class="table">
+        @if (true)
+        {
+            <tr>
+                <th>@Html.DisplayNameFor(model => model[0].Id)</th>
+                <th>@Html.DisplayNameFor(model => model[0].Nom)</th>
+                <th>@Html.DisplayNameFor(model => model[0].Prenom)</th>
+            </tr>
+            foreach (var candidat in Model)
+            {
+                <tr>
+                    <td>@candidat.Id</td>
+                    <td>@candidat.Nom</td>
+                    <td>@candidat.Prenom</td>
+                    <td>
+                        @Html.ActionLink("Editer", "Edit", new { id = candidat.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Supprimer", "Delete", new { id = candidat.Id }, new { @class = "btn btn-warning" })
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+<style>
+
+    .marginAfterLeftNavBar {
+        margin-left: 180px;
+    }
+
+    table {
+        margin-left: 20px;
+        margin-top: 50px;
+    }
+</style>
 

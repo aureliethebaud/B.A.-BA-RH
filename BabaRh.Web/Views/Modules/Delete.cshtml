@@ -4,30 +4,31 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Supprimer</h2>
 
 <h3>Voulez-vous vraiment supprimer cette réponse ?</h3>
 <div>
-    
-    <hr />
-    <dl class="dl-horizontal">
-      
-        <dt>
-            @Html.DisplayNameFor(model => model.ModuleLib)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ModuleLib)
-        </dd>
+    <table class="table">
 
-    </dl>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ModuleLib)</th>
 
-    @using (Html.BeginForm()) {
+        </tr>
+        <tr>
+            <td>@Model.ModuleLib</td>
+
+        </tr>
+
+    </table>
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default disabled" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Supprimer" class="btn btn-default disabled" /> |
+            @Html.ActionLink("Retour à la liste", "Index")
         </div>
     }
 </div>

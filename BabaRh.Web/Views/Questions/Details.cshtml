@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Détails</h2>
 
 <div>
     <h4>Question</h4>
@@ -12,53 +12,58 @@
     <dl class="dl-horizontal">
         @Html.HiddenFor(model => model.QuestionId)
 
+        <table class="table">
+            <tr>
+                <th class="headerColumnLength">@Html.DisplayNameFor(model => model.Niveau.NiveauLib)</th>
+                <td>@Html.DisplayFor(model => model.Niveau.NiveauLib)</td>
+                </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Module.ModuleLib)</th>
+                <td>@Html.DisplayFor(model => model.Module.ModuleLib)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.QuestionLib)</th>
+                <td class="bg-info">@Html.DisplayFor(model => model.QuestionLib)</td>
+                </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.QuestionOuverte)</th>
+                <td>@Html.DisplayFor(model => model.QuestionOuverte)</td>
+            </tr>
+            <tr>
+                <th>Réponses</th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Niveau.NiveauLib)
-        </dt>
+                @foreach (var reponses in Model.Reponses)
+                {
+                    <td class="retourChariotFlex">
+                        @reponses.IsOK : @reponses.ReponseLib<br>
+                    </td>
+                }
 
-        <dd>
-            @Html.DisplayFor(model => model.Niveau.NiveauLib)
-        </dd>
+            </tr>
+           
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Module.ModuleLib)
-        </dt>
+                
+             
+                
+                
 
-        <dd>
-            @Html.DisplayFor(model => model.Module.ModuleLib)
-        </dd>
+        </table>
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.QuestionLib)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QuestionLib)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.QuestionOuverte)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QuestionOuverte)
-        </dd>
-
-        <dt>
-            Réponses
-        </dt>
-        
-        @foreach (var reponses in Model.Reponses)
-        {
-    <dd>
-        @reponses.IsOK : @reponses.ReponseLib
-    </dd>
-        }
-        </dl>
 </div>
 
 <p>   
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à la liste", "Index")
 </p>
+
+
+<style>
+    .retourChariotFlex{
+        display:flex;
+    }
+
+    .headerColumnLength {
+        width: 200px;
+    }
+    
+</style>

@@ -17,7 +17,7 @@ namespace BabaRh.Web.Models.ViewModel
 
         [DataMember]
         [Required(ErrorMessage ="L'intitulé de la question est requis")]        
-        [Display(Name = "Intitulé")]
+        [Display(Name = "Intitulé de la question")]
         public string QuestionLib { get; set; }
 
         [DataMember]

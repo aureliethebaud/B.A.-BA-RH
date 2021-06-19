@@ -4,30 +4,33 @@
     ViewBag.Title = "Delete Quizz";
 }
 
-<h2>Delete</h2>
+<h2>Supprimer</h2>
 
-<h3>Voulez-vous vraiment supprimer ce quizz ?</h3>
+<h3>Voulez-vous vraiment supprimer ce quiz ?</h3>
 
-<table class="table table-striped">
+<table class="table">
     @if (true)
     {
         <tr>
             <th>@Html.DisplayNameFor(model => model.QuizzId)</th>
-            <th>@Html.DisplayNameFor(model => model.Candidat.Nom)</th>
-            <th>@Html.DisplayNameFor(model => model.Candidat.Prenom)</th>
-            <th>@Html.DisplayNameFor(model => model.Modules)</th>
-            
+            <td>@Model.QuizzId</td>
         </tr>
         <tr>
-            <td>@Model.QuizzId</td>
+            <th>@Html.DisplayNameFor(model => model.Candidat.Nom)</th>
             <td>@Model.Candidat.Nom</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Candidat.Prenom)</th>
             <td>@Model.Candidat.Prenom</td>
-            <th>
-                @foreach (var module in Model.Modules)
-                {
-                    @module.ModuleLib;
-                }
-            </th>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Modules)</th>
+            @foreach (var module in Model.Modules)
+            {
+                <td class="retourChariotFlex">
+                    @module.ModuleLib<br>
+                </td>
+            }
         </tr>
     }
 
@@ -38,7 +41,14 @@
     @Html.AntiForgeryToken()
 
     <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Supprimer" class="btn btn-default" /> |
+        @Html.ActionLink("Retour à la liste", "Index")
     </div>
 }
+
+<style>
+
+    .retourChariotFlex {
+        display: flex;
+    }
+</style>

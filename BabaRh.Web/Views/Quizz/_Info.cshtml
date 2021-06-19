@@ -1,11 +1,11 @@
 ﻿@model BabaRh.Web.Models.ViewModel.QuizzVM
 
-<h2>Details</h2>
+<h2>Détails</h2>
 
 <div>
     <h4>Quizz @Model.QuizzId</h4>
     <hr />
-    <dl class="dl-horizontal">
+    @*<dl class="dl-horizontal">
 
         <dt>
             @Html.DisplayNameFor(model => model.Candidat) :
@@ -46,6 +46,60 @@
                     }
                 }
             </dd>
-         }
-    </dl>
+        }
+    </dl>*@
+
+
+
+    <table class="table">
+
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Candidat) : @Html.DisplayFor(model => model.Candidat.Nom) @Html.DisplayFor(model => model.Candidat.Prenom)</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Nombre de questions : @Html.DisplayFor(model => model.NbQuestion)</th>
+            <td></td>
+        </tr>
+        <tr>
+            @foreach (var module in Model.Modules)
+            {
+                <th class="retourChariotFlex"> @module.ModuleLib : <br /> </th>
+                foreach (var question in Model.Questions)
+                {
+                    if (question.Module.ModuleId == module.ModuleId)
+                    {
+                        <td class="retourChariotFlex">
+                            [@question.Niveau.NiveauLib.ToUpper()]   @question.QuestionLib <br />
+                            @foreach (var reponse in question.Reponses)
+                            {
+                            <td class="retourChariotFlexWithSpaces">
+                                @reponse.IsOK :
+                                @reponse.ReponseLib<br />
+                            </td>
+
+                        }
+                            </td>
+                        }
+                    }
+                }
+        </tr>
+
+        }
+    </table>
 </div>
+
+<style>
+    
+    .retourChariotFlex {
+        display: flex;
+    }
+
+
+    .retourChariotFlexWithSpaces {
+        display: flex;
+        margin-left: 30px;
+    }
+</style>
+
+

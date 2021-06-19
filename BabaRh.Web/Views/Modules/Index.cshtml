@@ -7,10 +7,10 @@
 }
 
 <div class="marginAfterLeftNavBar">
-    <h2>Index</h2>
+    <h2>Liste des modules</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create", "Modules", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Ajouter nouveau module", "Create", "Modules", new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -29,8 +29,8 @@
                     @Html.DisplayFor(modelItem => item.ModuleLib)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ModuleId }, new { @class = "btn btn-info" })                   
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ModuleId }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Editer", "Edit", new { id = item.ModuleId }, new { @class = "btn btn-primary" })                   
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ModuleId }, new { @class = "btn btn-warning" })
                 </td>
             </tr>
         }
@@ -40,5 +40,9 @@
 <style>
     .marginAfterLeftNavBar {
         margin-left: 180px;
+    }
+    table {
+        margin-left: 20px;
+        margin-top: 50px;
     }
 </style>

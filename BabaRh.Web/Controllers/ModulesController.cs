@@ -95,7 +95,7 @@
         {
             if (ModelState.IsValid)
             {
-               
+                
                 await modulesService.UpdateAsync(module);
                 return RedirectToAction("Index");
             }

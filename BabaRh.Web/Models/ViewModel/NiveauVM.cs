@@ -12,6 +12,7 @@ namespace BabaRh.Web.Models.ViewModel
 
         [DataMember]
         [Display(Name = "Niveau")]
+        [Required(ErrorMessage = "Le libellé du niveau est requis")]
         public string NiveauLib { get; set; }
 
     }

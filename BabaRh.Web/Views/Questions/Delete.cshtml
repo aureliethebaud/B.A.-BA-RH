@@ -4,45 +4,38 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Supprimer</h2>
 
 <h3>Voulez-vous vraiment supprimer cette question ?</h3>
 <div>
     
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.QuestionId)
-        </dt>
+    
 
-        <dd>
-            @Html.DisplayFor(model => model.QuestionId)
-        </dd>
+    <table class="table">
+        @Html.HiddenFor(model => model.QuestionId)
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Module.ModuleLib)</th>
+            <th>@Html.DisplayNameFor(model => model.Niveau.NiveauLib)</th>
+            <th>@Html.DisplayNameFor(model => model.QuestionLib)</th>
+        </tr>
+        <tr>
+            <td>@Model.Module.ModuleLib</td>
+            <td>@Model.Niveau.NiveauLib</td>
+            <td>@Model.QuestionLib</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.QuestionLib)
-        </dt>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.QuestionLib)
-        </dd>
+    </table>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.QuestionOuverte)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.QuestionOuverte)
-        </dd>
-
-    </dl>
+   
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retour à la liste", "Index")
         </div>
     }
 </div>

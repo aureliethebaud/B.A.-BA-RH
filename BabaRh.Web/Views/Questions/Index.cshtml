@@ -13,7 +13,7 @@
    
 
     <p>
-        @Html.ActionLink("Create New", "Create", "Questions", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Ajouter nouvelle question", "Create", "Questions", new { @class = "btn btn-primary" })
     </p>
 
 
@@ -63,13 +63,13 @@
                 {
                     <tr>
 
-                        <td>@question.Niveau.NiveauLib</td>
-                        <td class="openQuestion">@question.QuestionOuverte</td>
+                        <td class="niveauColumnLength">@question.Niveau.NiveauLib</td>
+                        <td class="openQuestionColumnLength">@question.QuestionOuverte</td>
                         <td>@question.QuestionLib</td>
-                        <td class="actionbutton">
-                            @Html.ActionLink("Details", "Details", new { id = question.QuestionId }, new { @class = "btn btn-info" })
-                            @Html.ActionLink("Edit", "Edit", new { id = question.QuestionId }, new { @class = "btn btn-info" })
-                            @Html.ActionLink("Delete", "Delete", new { id = question.QuestionId }, new { @class = "btn btn-warning" })
+                        <td class="actionbuttonColumLength">
+                            @Html.ActionLink("Détails", "Details", new { id = question.QuestionId }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Editer", "Edit", new { id = question.QuestionId }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Supprimer", "Delete", new { id = question.QuestionId }, new { @class = "btn btn-warning" })
                         </td>
                     </tr>
                 }
@@ -102,16 +102,20 @@
         margin-top:10px;                  
     }
 
-    .actionbutton {
-        width: 210px;       
+    .actionbuttonColumLength {
+        width: 250px;       
     }
 
     .module {
         color: #EB4C42;
     }
 
-    .openQuestion{
+    .openQuestionColumnLength{
         width:90px;
+    }
+
+    .niveauColumnLength {
+        width: 110px;
     }
     
 </style>

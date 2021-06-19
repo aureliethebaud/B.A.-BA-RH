@@ -10,7 +10,7 @@
     <h2>Liste des niveaux</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create", "Niveaux", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Ajouter nouveau niveau", "Create", "Niveaux", new { @class = "btn btn-primary" })
     </p>
     <table class="table">
         <tr>
@@ -29,8 +29,8 @@
                     @Html.DisplayFor(modelItem => item.NiveauLib)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.NiveauId }, new { @class = "btn btn-info" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.NiveauId }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Editer", "Edit", new { id = item.NiveauId }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.NiveauId }, new { @class = "btn btn-warning" })
                 </td>
             </tr>
         }
@@ -40,5 +40,9 @@
 <style>
     .marginAfterLeftNavBar {
         margin-left: 180px;
+    }
+    table {
+        margin-left: 20px;
+        margin-top: 50px;
     }
 </style>
