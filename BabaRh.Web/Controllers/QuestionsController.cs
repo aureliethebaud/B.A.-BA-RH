@@ -147,6 +147,24 @@
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var question = await questionsService.Get((int)id);
+
+            if (question == null)
+            {
+                return HttpNotFound();
+            }
+            return View(question);
+           
+        }
+        
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);

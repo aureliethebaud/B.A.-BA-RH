@@ -28,7 +28,12 @@
                 Niveau = new Niveau { NiveauId = fromDb.Niveau.NiveauId, NiveauLib = fromDb.Niveau.NiveauLib },
                 Module = new Module { ModuleId = fromDb.Module.ModuleId, ModuleLib = fromDb.Module.ModuleLib },
                 QuestionOuverte = fromDb.QuestionOuverte,
-                
+                Reponses = fromDb.Reponse.Select(r => new Reponse
+                {
+                    ReponseId = r.ReponseId,
+                    IsOk = r.IsOk,
+                    ReponseLib = r.ReponseLib
+                }).ToList()              
             };
 
             return this.Ok(result);

@@ -16,6 +16,7 @@ namespace BabaRh.Web.Models.ViewModel
         public int QuestionId { get; set; }
 
         [DataMember]
+        [Required(ErrorMessage ="L'intitulé de la question est requis")]        
         [Display(Name = "Intitulé")]
         public string QuestionLib { get; set; }
 

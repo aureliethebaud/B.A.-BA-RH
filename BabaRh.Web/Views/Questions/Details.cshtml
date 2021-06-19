@@ -10,13 +10,25 @@
     <h4>Question</h4>
     <hr />
     <dl class="dl-horizontal">
+        @Html.HiddenFor(model => model.QuestionId)
+
+
         <dt>
-            @Html.DisplayNameFor(model => model.QuestionId)
+            @Html.DisplayNameFor(model => model.Niveau.NiveauLib)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.QuestionId)
+            @Html.DisplayFor(model => model.Niveau.NiveauLib)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Module.ModuleLib)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Module.ModuleLib)
+        </dd>
+
 
         <dt>
             @Html.DisplayNameFor(model => model.QuestionLib)
@@ -34,9 +46,19 @@
             @Html.DisplayFor(model => model.QuestionOuverte)
         </dd>
 
-    </dl>
+        <dt>
+            Réponses
+        </dt>
+        
+        @foreach (var reponses in Model.Reponses)
+        {
+    <dd>
+        @reponses.IsOK : @reponses.ReponseLib
+    </dd>
+        }
+        </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.QuestionId }) |
+
+<p>   
     @Html.ActionLink("Back to List", "Index")
 </p>
