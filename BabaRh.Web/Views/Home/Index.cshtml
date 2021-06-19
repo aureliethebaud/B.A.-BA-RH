@@ -2,30 +2,66 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<div>
+    <div class="maZoneDeTexe">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">B.A.BA RH</h1>
+                <p class="lead">Cabinet de conseil en Recrutement</p>
+            </div>
+        </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Notre métier ? Vous accompagnez</h2>
+
+        <h3>Vous êtes un employeur à la recherche d'un nouveau talent ?</h3>
+        <p class="TextSizeRedefine">
+            Nos chasseurs de tête sont là pour vous trouver la perle rare !<br />
+            Nous chercherons le <span class="MiseEnEvidence">Perfect Match</span> entre vos besoins,
+            votre identité, et les compétences et la personnalité des candidats que nous vous présenterons.
+            Pour cela, nous réalisons plusieurs entretiens approfondis avec les candidats sélectionnés
+            puis nous validons leurs compétences par le biais d'un quiz. Nos quiz sont régulièrement
+            mis à jour en fonction des nouveautés technologiques du marché.<span class="MiseEnEvidence">
+                Nous faisons de la veille technologique une priorité pour anticiper votre demande.
+            </span>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            <h3>Vous êtes un candidat à la recherche d'une grande aventure professionnelle ?</h3>
+        <p class="TextSizeRedefine">
+            Nous nous assurons, avant toute collaboration avec une entreprise à la recherche d'un candidat,
+            de son niveau de <span class="MiseEnEvidence">qualité de vie au travail</span>. Nous sommes certains
+            qu'un employé épanoui est un employé investi et loyal. Les candidats que nous placons présentent un
+            faible taux de turn-over dans leur entreprise. C'est pourquoi de nombreuses entreprises nous font
+            confiance. Notre portefeuille de clients s'accroît de jour en jour. N'attendez plus,
+            <span class="MiseEnEvidence">contactez-nous !</span>
+            Nous avons sans aucun doute une offre faite pour vous.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div>
+        <img class="candidatPicture" src="~/Content/Image/candidat1.jpg" />
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
 </div>
+<style>
+    .candidatPicture {
+        top: 80px;
+        position: fixed;
+        right: 380px;
+        display: flex;
+    }
+
+    .maZoneDeTexe {
+        margin-top: 11px;
+        text-align: center;
+        justify-content: center;
+        width: 43%;
+    }
+
+    .MiseEnEvidence {
+        color: #318CE7;
+        font-weight: bold;
+    }
+
+    .TextSizeRedefine {
+        font-size: 15px;
+    }
+</style>
