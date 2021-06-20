@@ -122,6 +122,9 @@ namespace BabaRh.Api.Controllers
                 QuizzId = quizz.QuizzId
             };
 
+            quizzToUpdate.QuizzModule = quizz.Modules.Select(mq => new AccessLayer.Models.QuizzModule { ModuleId = mq.ModuleId, QuizzId = quizzToUpdate.QuizzId }).ToList();
+            quizzToUpdate.QuizzQuestion = quizz.Questions.Select(qq => new AccessLayer.Models.QuizzQuestion { QuestionId = qq.QuestionId, QuizzId = quizzToUpdate.QuizzId }).ToList();
+
             await quizzAccessLayer.UpdateAsync(quizzToUpdate);
 
             return this.Ok("updated");

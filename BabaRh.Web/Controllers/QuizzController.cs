@@ -157,7 +157,7 @@ namespace BabaRh.Web.Controllers
                     vm.Quizz.Questions.AddRange((await questionService.GetAll()).Where(q => q.Module.ModuleId == module.ModuleId));
                 }
 
-               // vm.Quizz.NbQuestion = vm.Quizz.Questions.Count();
+               vm.Quizz.NbQuestion = vm.Quizz.Questions.Count();
 
                 await quizzService.Update(vm.Quizz);
                 return RedirectToAction("Index");

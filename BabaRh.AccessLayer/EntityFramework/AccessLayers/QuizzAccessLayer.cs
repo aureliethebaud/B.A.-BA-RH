@@ -91,8 +91,8 @@
                 quizzToUpdate.Chrono = quizz.Chrono;
                 quizzToUpdate.Url = quizz.Url;
             }
-           
-            this.context.SaveChanges();
+
+            await this.context.SaveChangesAsync().ConfigureAwait(false);
 
             return quizz;
         }
